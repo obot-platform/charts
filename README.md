@@ -2,6 +2,14 @@
 
 A Helm chart for Obot
 
+## Installation
+
+To install the chart with the release name `obot`:
+```
+helm repo add obot https://charts.obot.ai
+helm install obot obot/obot
+```
+
 ## Values
 
 | Key | Type | Default | Description |
@@ -27,7 +35,7 @@ A Helm chart for Obot
 | extraEnv | object | `{}` | A map of additional environment variables to set |
 | image.pullPolicy | string | `"IfNotPresent"` | Kubernetes image pullPolicy to use for Obot |
 | image.repository | string | `"ghcr.io/obot-platform/obot-enterprise"` | The name of the docker repository for Obot |
-| image.tag | string | `"latest"` | The docker tag to pull for obot |
+| image.tag | string | `""` | The docker tag to pull for obot. If blank, will default to the chart appVersion |
 | imagePullSecrets | list | `[]` | Configures kubernetes secrets to use for pulling private images |
 | ingress.annotations | object | `{}` | Configure annotations to add to the ingress object |
 | ingress.className | string | `nil` | Configures a preexisting ingress class to use. |
