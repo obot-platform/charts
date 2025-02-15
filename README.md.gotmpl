@@ -18,5 +18,17 @@ helm repo add obot https://charts.obot.ai
 helm install obot obot/obot
 ```
 
+### Note
+This chart defaults to the enterprise version of Obot. To install this version, you must create an imagePullSecret and configure that in the chart.
+If you want to use the open-source version of Obot instead, set `image.repository` to `ghcr.io/obot-platform/obot`.
+
 {{ template "chart.valuesSection" . }}
 
+## Updating this repo
+This repo will be updated automatically whenever there is a release of Obot (and by extension, the helm chart). The GitHub Actions that control this can be found [here](https://github.com/obot-platform/obot/blob/main/.github/workflows/release.yml#L62).
+
+You can manually update the documentation in this readme using `helm-docs`. If you have both the `charts` and `obot` repos checked out in the same folder, you can use this command:
+```
+helm-docs -c ../obot/chart -o '../../charts/README.md' --template-files '../../charts/README.md.gotmpl'
+```
+The template for the readme is `./README.md.gotmpl`

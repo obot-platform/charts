@@ -10,6 +10,10 @@ helm repo add obot https://charts.obot.ai
 helm install obot obot/obot
 ```
 
+### Note
+This chart defaults to the enterprise version of Obot. To install this version, you must create an imagePullSecret and configure that in the chart.
+If you want to use the open-source version of Obot instead, set `image.repository` to `ghcr.io/obot-platform/obot`.
+
 ## Values
 
 | Key | Type | Default | Description |
@@ -28,13 +32,13 @@ helm install obot obot/obot
 | config.obotServerEnableAuthentication | bool | `true` | Enables authentication for Obot |
 | config.obotServerEncryptionProvider | string | `"None"` | Configures an encryption provider for credentials in Obot |
 | config.obotServerHostname | string | `""` | The hostname of your Obot instance, including protocol |
-| config.obotWorkspaceProviderType | string | `"s3"` | Configures the storage backend for workspaces in Obot. Can be 's3' or 'directory' |
+| config.obotWorkspaceProviderType | string | `"directory"` | Configures the storage backend for workspaces in Obot. Can be 's3' or 'directory' |
 | config.openaiApiKey | string | `""` | An OpenAI API Key used to configure access to OpenAI models, which are the default in Obot. |
 | config.workspaceProviderS3BaseEndpoint | string | `""` | If config.obotWorkspaceProviderType is 's3' and you are not using AWS S3, this needs to be set to the S3 api endpoint of your provider. |
 | config.workspaceProviderS3Bucket | string | `""` | The name of the S3 bucket to store workspaces in. Only used if config.obotWorkspaceProviderType is 's3' |
 | extraEnv | object | `{}` | A map of additional environment variables to set |
 | image.pullPolicy | string | `"IfNotPresent"` | Kubernetes image pullPolicy to use for Obot |
-| image.repository | string | `"ghcr.io/obot-platform/obot-enterprise"` | The name of the docker repository for Obot |
+| image.repository | string | `"ghcr.io/obot-platform/obot-enterprise"` | The name of the docker repository for Obot. `ghcr.io/obot-platform/obot` for open-source or `ghcr.io/obot-platform/obot-enterprise` for enterprise. Please note that for enterprise you will need to set an `imagePullSecret` |
 | image.tag | string | `""` | The docker tag to pull for obot. If blank, will default to the chart appVersion |
 | imagePullSecrets | list | `[]` | Configures kubernetes secrets to use for pulling private images |
 | ingress.annotations | object | `{}` | Configure annotations to add to the ingress object |
@@ -45,6 +49,12 @@ helm install obot obot/obot
 | ingress.paths[0].path | string | `"/"` |  |
 | ingress.paths[0].pathType | string | `"Prefix"` |  |
 | ingress.tls | list | `[]` | List of secrets used to configure TLS for the ingress. |
+| persistence.accessModes | list | `["ReadWriteOnce"]` | Persistent Volume access modes |
+| persistence.enabled | bool | `true` | Enables persistence of workspaces using a PVC when config.obotWorkspaceProviderType is `directory` |
+| persistence.existingClaim | string | `""` |  |
+| persistence.path | string | `"/data"` | The path the volume will be mounted |
+| persistence.size | string | `"8Gi"` | e Persistent Volume size |
+| persistence.storageClass | string | `""` | Persistent Volume storage class If defined, storageClassName: <storageClass> If set to "-", storageClassName: "", which disables dynamic provisioning If undefined (the default) or set to null, no storageClassName spec is set, choosing the default provisioner |
 | replicaCount | int | `1` | The number of Obot server instances to run |
 | resources | object | `{}` | Resource requests and limits to use for Obot |
 | service.annotations | object | `{}` | Extra annotations to add to service object |
@@ -56,3 +66,11 @@ helm install obot obot/obot
 | serviceAccount.name | string | `""` |  |
 | updateStrategy | string | `"RollingUpdate"` | Configures what update strategy to use for the deployment (Recreate or RollingUpdate) |
 
+## Updating this repo
+This repo will be updated automatically whenever there is a release of Obot (and by extension, the helm chart). The GitHub Actions that control this can be found [here](https://github.com/obot-platform/obot/blob/main/.github/workflows/release.yml#L62).
+
+You can manually update the documentation in this readme using `helm-docs`. If you have both the `charts` and `obot` repos checked out in the same folder, you can use this command:
+```
+helm-docs -c ../obot/chart -o '../../charts/README.md' --template-files '../../charts/README.md.gotmpl'
+```
+The template for the readme is `./README.md.gotmpl`
