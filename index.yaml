@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  obot:
+  - apiVersion: v2
+    appVersion: v0.7.0
+    created: "2025-03-17T12:17:40.089805172Z"
+    description: A Helm chart for Obot
+    digest: edda1a5590a5180bd07d5ec4b9e9f38584dbe4f08ae98e0da9382ac671e53426
+    name: obot
+    urls:
+    - https://charts.obot.ai/charts/obot-v0.7.0.tgz
+    version: v0.7.0
+generated: "2025-03-17T12:17:40.089231735Z"
