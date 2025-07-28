@@ -67,7 +67,7 @@ If you want to use the open-source version of Obot instead, set `image.repositor
 | mcpNamespace.annotations."argocd.argoproj.io/sync-wave" | string | `"-1"` |  |
 | mcpNamespace.name | string | `""` | The namespace in which to deploy the MCP servers. Will only be created if config.OBOT_SERVER_MCPBASE_IMAGE image is set. Defaults to {{ .Release.Name }}-mcp |
 | persistence.accessModes | list | `["ReadWriteOnce"]` | Persistent Volume access modes |
-| persistence.enabled | bool | `false` | Enables persistence using a PVC |
+| persistence.enabled | bool | `true` | Enables persistence using a PVC |
 | persistence.existingClaim | string | `""` |  |
 | persistence.path | string | `"/data"` | The path the volume will be mounted |
 | persistence.size | string | `"8Gi"` | e Persistent Volume size |
