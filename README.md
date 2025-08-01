@@ -40,7 +40,7 @@ If you want to use the open-source version of Obot instead, set `image.repositor
 | config.OBOT_SERVER_ENCRYPTION_PROVIDER | string | `""` | Configures an encryption provider for credentials in Obot |
 | config.OBOT_SERVER_HOSTNAME | string | `""` | The hostname of your Obot instance, including protocol |
 | config.OBOT_SERVER_KNOWLEDGE_FILE_WORKERS | string | `"5"` | Advanced - sets the number of workers for knowledge |
-| config.OBOT_SERVER_MCPBASE_IMAGE | string | `""` | Deploy MCP servers in the cluster using this base image. Setting this value will also create the necessary service account, role and rolebinding. |
+| config.OBOT_SERVER_MCPBASE_IMAGE | string | `"ghcr.io/obot-platform/mcp-images-phat:main"` | Deploy MCP servers in the cluster using this base image. Setting this value will also create the necessary service account, role and rolebinding. |
 | config.OBOT_SERVER_MCPCLUSTER_DOMAIN | string | `""` | The cluster domain to use for MCP services. Defaults to cluster.local. Only matters if the above image is set. |
 | config.OBOT_SERVER_OTEL_BASE_EXPORT_ENDPOINT | string | `""` | The base export endpoint for OpenTelemetry |
 | config.OBOT_SERVER_OTEL_BEARER_TOKEN | string | `""` | The bearer token for authentication with OpenTelemetry |
@@ -55,7 +55,7 @@ If you want to use the open-source version of Obot instead, set `image.repositor
 | image.pullPolicy | string | `"IfNotPresent"` | Kubernetes image pullPolicy to use for Obot |
 | image.repository | string | `"ghcr.io/obot-platform/obot-enterprise"` | The name of the docker repository for Obot. `ghcr.io/obot-platform/obot` for open-source or `ghcr.io/obot-platform/obot-enterprise` for enterprise. Please note that for enterprise you will need to set an `imagePullSecret` |
 | image.tag | string | `""` | The docker tag to pull for obot. If blank, will default to the chart appVersion |
-| imagePullSecrets | list | `[]` | Configures kubernetes secrets to use for pulling private images |
+| imagePullSecrets | list | `[]` | Configures kubernetes secrets to use for pulling private images. Expects a list of objects. `imagePullSecrets:[{"name": "fooBar"}]` |
 | ingress.annotations | object | `{}` | Configure annotations to add to the ingress object |
 | ingress.className | string | `nil` | Configures a preexisting ingress class to use. |
 | ingress.enabled | bool | `false` | Enables ingress creation for Obot. |
