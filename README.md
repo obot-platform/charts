@@ -53,7 +53,7 @@ If you want to use the open-source version of Obot instead, set `image.repositor
 | extraVolumeMounts | list | `[]` | A list of additional volume mounts to create |
 | extraVolumes | list | `[]` | A list of additional volumes to create |
 | image.pullPolicy | string | `"IfNotPresent"` | Kubernetes image pullPolicy to use for Obot |
-| image.repository | string | `"ghcr.io/obot-platform/obot-enterprise"` | The name of the docker repository for Obot. `ghcr.io/obot-platform/obot` for open-source or `ghcr.io/obot-platform/obot-enterprise` for enterprise. Please note that for enterprise you will need to set an `imagePullSecret` |
+| image.repository | string | `"ghcr.io/obot-platform/obot"` | The name of the docker repository for Obot. `ghcr.io/obot-platform/obot` for open-source or `ghcr.io/obot-platform/obot-enterprise` for enterprise. Please note that for enterprise you will need to set an `imagePullSecret` |
 | image.tag | string | `""` | The docker tag to pull for obot. If blank, will default to the chart appVersion |
 | imagePullSecrets | list | `[]` | Configures kubernetes secrets to use for pulling private images. Expects a list of objects. `imagePullSecrets:[{"name": "fooBar"}]` |
 | ingress.annotations | object | `{}` | Configure annotations to add to the ingress object |
