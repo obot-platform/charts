@@ -19,8 +19,8 @@ helm install obot obot/obot
 ```
 
 ### Note
-This chart defaults to the enterprise version of Obot. To install this version, you must create an imagePullSecret and configure that in the chart.
-If you want to use the open-source version of Obot instead, set `image.repository` to `ghcr.io/obot-platform/obot`.
+This chart defaults to the open source version of Obot.
+If you want to use the enterprise version of Obot instead, set `image.repository` to `ghcr.io/obot-platform/obot-enterprise`. To install this version, you must create an imagePullSecret and configure that in the chart.
 
 {{ template "chart.valuesSection" . }}
 
