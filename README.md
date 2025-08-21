@@ -18,6 +18,7 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| config.ANTHROPIC_API_KEY | string | `""` | An Anthropic API Key used to configure access to Anthropic models, which can be used as the default in Obot. |
 | config.AWS_ACCESS_KEY_ID | string | `""` | An AWS access key with permissions for AWS KMS, used for encryption |
 | config.AWS_REGION | string | `""` | An AWS region, used to access AWS KMS |
 | config.AWS_SECRET_ACCESS_KEY | string | `""` | An AWS secret access key with permissions for AWS KMS, used for encryption |
@@ -40,8 +41,9 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_ENCRYPTION_PROVIDER | string | `""` | Configures an encryption provider for credentials in Obot |
 | config.OBOT_SERVER_HOSTNAME | string | `""` | The hostname of your Obot instance, including protocol |
 | config.OBOT_SERVER_KNOWLEDGE_FILE_WORKERS | string | `"5"` | Advanced - sets the number of workers for knowledge |
-| config.OBOT_SERVER_MCPBASE_IMAGE | string | `"ghcr.io/obot-platform/mcp-images-phat:main"` | Deploy MCP servers in the cluster using this base image. Setting this value will also create the necessary service account, role and rolebinding. |
+| config.OBOT_SERVER_MCPBASE_IMAGE | string | `"ghcr.io/obot-platform/mcp-images-phat:main"` | Deploy MCP servers in the cluster using this base image. |
 | config.OBOT_SERVER_MCPCLUSTER_DOMAIN | string | `""` | The cluster domain to use for MCP services. Defaults to cluster.local. Only matters if the above image is set. |
+| config.OBOT_SERVER_MCPRUNTIME_BACKEND | string | `"kubernetes"` | The runtime backend to use for MCP servers. Can be 'local', 'docker', or 'kubernetes'. Defaults to 'docker'. Setting this to 'kubernetes' will also create the necessary service account, role and rolebinding. |
 | config.OBOT_SERVER_OTEL_BASE_EXPORT_ENDPOINT | string | `""` | The base export endpoint for OpenTelemetry |
 | config.OBOT_SERVER_OTEL_BEARER_TOKEN | string | `""` | The bearer token for authentication with OpenTelemetry |
 | config.OBOT_SERVER_OTEL_SAMPLE_PROB | string | `""` | The sampling probability for OpenTelemetry |
