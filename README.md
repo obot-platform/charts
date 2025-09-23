@@ -43,7 +43,7 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_KNOWLEDGE_FILE_WORKERS | string | `"5"` | Advanced - sets the number of workers for knowledge |
 | config.OBOT_SERVER_MCPAUDIT_LOGS_PERSIST_BATCH_SIZE | string | `""` | The batch size to use when persisting MCP audit logs to the database. Defaults to 1000 |
 | config.OBOT_SERVER_MCPAUDIT_LOG_PERSIST_INTERVAL_SECONDS | string | `""` | The interval in seconds to persist MCP audit logs to the database. Defaults to 5 seconds. |
-| config.OBOT_SERVER_MCPBASE_IMAGE | string | `"ghcr.io/obot-platform/mcp-images-phat:main"` | Deploy MCP servers in the cluster using this base image. |
+| config.OBOT_SERVER_MCPBASE_IMAGE | string | `"ghcr.io/obot-platform/mcp-images/phat:main"` | Deploy MCP servers in the cluster using this base image. |
 | config.OBOT_SERVER_MCPCLUSTER_DOMAIN | string | `""` | The cluster domain to use for MCP services. Defaults to cluster.local. Only matters if the above image is set. |
 | config.OBOT_SERVER_MCPRUNTIME_BACKEND | string | `"kubernetes"` | The runtime backend to use for MCP servers. Can be 'local', 'docker', or 'kubernetes'. Defaults to 'docker'. Setting this to 'kubernetes' will also create the necessary service account, role and rolebinding. |
 | config.OBOT_SERVER_OTEL_BASE_EXPORT_ENDPOINT | string | `""` | The base export endpoint for OpenTelemetry |
@@ -68,6 +68,7 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | ingress.paths[0].path | string | `"/"` |  |
 | ingress.paths[0].pathType | string | `"Prefix"` |  |
 | ingress.tls | list | `[]` | List of secrets used to configure TLS for the ingress. |
+| mcpImagePullSecrets | list | `[]` | Configuration for creating image pull secrets for MCP containers. Each entry should contain registry credentials that will be used to create Kubernetes secrets. |
 | mcpNamespace.annotations."argocd.argoproj.io/sync-wave" | string | `"-1"` |  |
 | mcpNamespace.name | string | `""` | The namespace in which to deploy the MCP servers. Will only be created if config.OBOT_SERVER_MCPBASE_IMAGE image is set. Defaults to {{ .Release.Name }}-mcp |
 | persistence.accessModes | list | `["ReadWriteOnce"]` | Persistent Volume access modes |
