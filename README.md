@@ -18,6 +18,8 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| additionalLabels | object | `{}` |  |
+| affinity | object | `{}` | Configure affinity rules for pod scheduling |
 | config.ANTHROPIC_API_KEY | string | `""` | An Anthropic API Key used to configure access to Anthropic models, which can be used as the default in Obot. |
 | config.AWS_ACCESS_KEY_ID | string | `""` | An AWS access key with permissions for AWS KMS, used for encryption |
 | config.AWS_REGION | string | `""` | An AWS region, used to access AWS KMS |
@@ -33,6 +35,7 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_AUDIT_LOGS_STORE_S3ENDPOINT | string | `""` | If config.OBOT_SERVER_AUDIT_LOGS_MODE is 's3' and you are not using AWS S3, this needs to be set to the S3 api endpoint of your provider. |
 | config.OBOT_SERVER_AUDIT_LOGS_USE_PATH_STYLE | bool | `false` | Whether to use path style for S3 |
 | config.OBOT_SERVER_AUTH_ADMIN_EMAILS | string | `""` | A comma separated list of email addresses that will have the Admin role in Obot. |
+| config.OBOT_SERVER_AUTH_OWNER_EMAILS | string | `""` | A comma separated list of email addresses that will have the Owner role in Obot. |
 | config.OBOT_SERVER_DISALLOW_LOCALHOST_MCP | string | `""` | disallow MCP servers that try to connect to localhost. Defaults to false. |
 | config.OBOT_SERVER_DSN | string | `""` | The DSN for your database. For example: postgres://<username>:<password>@<hostname>/<db_name> |
 | config.OBOT_SERVER_ENABLE_AUTHENTICATION | bool | `false` | Enables authentication for Obot |
@@ -43,7 +46,7 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_KNOWLEDGE_FILE_WORKERS | string | `"5"` | Advanced - sets the number of workers for knowledge |
 | config.OBOT_SERVER_MCPAUDIT_LOGS_PERSIST_BATCH_SIZE | string | `""` | The batch size to use when persisting MCP audit logs to the database. Defaults to 1000 |
 | config.OBOT_SERVER_MCPAUDIT_LOG_PERSIST_INTERVAL_SECONDS | string | `""` | The interval in seconds to persist MCP audit logs to the database. Defaults to 5 seconds. |
-| config.OBOT_SERVER_MCPBASE_IMAGE | string | `"ghcr.io/obot-platform/mcp-images/phat:main"` | Deploy MCP servers in the cluster using this base image. |
+| config.OBOT_SERVER_MCPBASE_IMAGE | string | `"ghcr.io/obot-platform/mcp-images/phat:main"` | Deploy MCP servers in the cluster using this base image. OBOT_SERVER_MCPNAMESPACE is automatically added to the secret if config.OBOT_SERVER_MCPBASE_IMAGE is set. |
 | config.OBOT_SERVER_MCPCLUSTER_DOMAIN | string | `""` | The cluster domain to use for MCP services. Defaults to cluster.local. Only matters if the above image is set. |
 | config.OBOT_SERVER_MCPRUNTIME_BACKEND | string | `"kubernetes"` | The runtime backend to use for MCP servers. Can be 'local', 'docker', or 'kubernetes'. Defaults to 'docker'. Setting this to 'kubernetes' will also create the necessary service account, role and rolebinding. |
 | config.OBOT_SERVER_OTEL_BASE_EXPORT_ENDPOINT | string | `""` | The base export endpoint for OpenTelemetry |
@@ -51,7 +54,8 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_OTEL_SAMPLE_PROB | string | `""` | The sampling probability for OpenTelemetry |
 | config.OBOT_SERVER_RETENTION_POLICY_HOURS | string | `""` | The retention policy for the system. Set to 0 to disable retention. Default is 2160 (90 days) if left blank. This field should just be a number in a string, no `h` suffix. |
 | config.OPENAI_API_KEY | string | `""` | An OpenAI API Key used to configure access to OpenAI models, which are the default in Obot. |
-| config.existingSecret | string | `""` | The name of an existing secret to use for config instead of creating a new one. Must contain keys in env format, just like below. OBOT_SERVER_MCPNAMESPACE is automatically added to the secret if config.OBOT_SERVER_MCPBASE_IMAGE is set. |
+| config.existingSecret | string | `""` | The name of an existing secret to use for config instead of creating a new one. Must contain keys in env format, just like below. |
+| dev.useEmbeddedDb | bool | `false` | For development/testing use only, enables the use of an postgres database embedded in the obot container. Do not use in production. |
 | extraEnv | object | `{}` | A map of additional environment variables to set |
 | extraEnvFrom | list | `[]` | A list of additional environment variables to set from a secret |
 | extraVolumeMounts | list | `[]` | A list of additional volume mounts to create |
@@ -71,6 +75,7 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | mcpImagePullSecrets | list | `[]` | Configuration for creating image pull secrets for MCP containers. Each entry should contain registry credentials that will be used to create Kubernetes secrets. |
 | mcpNamespace.annotations."argocd.argoproj.io/sync-wave" | string | `"-1"` |  |
 | mcpNamespace.name | string | `""` | The namespace in which to deploy the MCP servers. Will only be created if config.OBOT_SERVER_MCPBASE_IMAGE image is set. Defaults to {{ .Release.Name }}-mcp |
+| nodeSelector | object | `{}` | Configure node selector for pod assignment |
 | persistence.accessModes | list | `["ReadWriteOnce"]` | Persistent Volume access modes |
 | persistence.enabled | bool | `true` | Enables persistence using a PVC |
 | persistence.existingClaim | string | `""` |  |
@@ -86,6 +91,7 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
+| tolerations | list | `[]` | Configure tolerations for pod scheduling |
 | updateStrategy | string | `"RollingUpdate"` | Configures what update strategy to use for the deployment (Recreate or RollingUpdate) |
 
 ## Updating this repo
