@@ -39,6 +39,7 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_DISALLOW_LOCALHOST_MCP | string | `""` | disallow MCP servers that try to connect to localhost. Defaults to false. |
 | config.OBOT_SERVER_DSN | string | `""` | The DSN for your database. For example: postgres://<username>:<password>@<hostname>/<db_name> |
 | config.OBOT_SERVER_ENABLE_AUTHENTICATION | bool | `false` | Enables authentication for Obot |
+| config.OBOT_SERVER_ENABLE_REGISTRY_AUTH | bool | `false` | Enables authentication for the MCP registry API. When false (default), registry is accessible without authentication and returns only default catalog items with wildcard access control rules. |
 | config.OBOT_SERVER_ENCRYPTION_CONFIG_FILE | string | `""` | The path to a file containing the encryption configuration. Only used if config.OBOT_SERVER_ENCRYPTION_PROVIDER is 'custom' |
 | config.OBOT_SERVER_ENCRYPTION_KEY | string | `""` | The key to use for encryption. Only used if config.OBOT_SERVER_ENCRYPTION_PROVIDER is 'custom'. A key can be generated with `openssl rand -base64 32` |
 | config.OBOT_SERVER_ENCRYPTION_PROVIDER | string | `""` | Configures an encryption provider for credentials in Obot |
