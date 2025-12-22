@@ -36,6 +36,7 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_AUDIT_LOGS_USE_PATH_STYLE | bool | `false` | Whether to use path style for S3 |
 | config.OBOT_SERVER_AUTH_ADMIN_EMAILS | string | `""` | A comma separated list of email addresses that will have the Admin role in Obot. |
 | config.OBOT_SERVER_AUTH_OWNER_EMAILS | string | `""` | A comma separated list of email addresses that will have the Owner role in Obot. |
+| config.OBOT_SERVER_DISABLE_UPDATE_CHECK | string | `""` | Disable the Obot server update check. Defaults to false. |
 | config.OBOT_SERVER_DISALLOW_LOCALHOST_MCP | string | `""` | disallow MCP servers that try to connect to localhost. Defaults to false. |
 | config.OBOT_SERVER_DSN | string | `""` | The DSN for your database. For example: postgres://<username>:<password>@<hostname>/<db_name> |
 | config.OBOT_SERVER_ENABLE_AUTHENTICATION | bool | `false` | Enables authentication for Obot |
@@ -49,12 +50,13 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_MCPAUDIT_LOG_PERSIST_INTERVAL_SECONDS | string | `""` | The interval in seconds to persist MCP audit logs to the database. Defaults to 5 seconds. |
 | config.OBOT_SERVER_MCPBASE_IMAGE | string | `"ghcr.io/obot-platform/mcp-images/phat:main"` | Deploy MCP servers in the cluster using this base image. OBOT_SERVER_MCPNAMESPACE is automatically added to the secret if config.OBOT_SERVER_MCPBASE_IMAGE is set. |
 | config.OBOT_SERVER_MCPCLUSTER_DOMAIN | string | `""` | The cluster domain to use for MCP services. Defaults to cluster.local. Only matters if the above image is set. |
-| config.OBOT_SERVER_MCPRUNTIME_BACKEND | string | `"kubernetes"` | The runtime backend to use for MCP servers. Can be 'local', 'docker', or 'kubernetes'. Defaults to 'docker'. Setting this to 'kubernetes' will also create the necessary service account, role and rolebinding. |
+| config.OBOT_SERVER_MCPHTTPWEBHOOK_BASE_IMAGE | string | `"ghcr.io/obot-platform/mcp-images/http-webhook-converter:main"` | Deploy MCP HTTP webhook servers in the cluster using this base image. |
+| config.OBOT_SERVER_MCPREMOTE_SHIM_BASE_IMAGE | string | `"ghcr.io/nanobot-ai/nanobot:v0.0.45"` | Deploy MCP remote shim servers in the cluster using this base image. |
+| config.OBOT_SERVER_MCPRUNTIME_BACKEND | string | `"kubernetes"` | The runtime backend to use for MCP servers. Can be 'docker' or 'kubernetes'. Defaults to 'docker'. Setting this to 'kubernetes' will also create the necessary service account, role and rolebinding. |
 | config.OBOT_SERVER_OTEL_BASE_EXPORT_ENDPOINT | string | `""` | The base export endpoint for OpenTelemetry |
 | config.OBOT_SERVER_OTEL_BEARER_TOKEN | string | `""` | The bearer token for authentication with OpenTelemetry |
 | config.OBOT_SERVER_OTEL_SAMPLE_PROB | string | `""` | The sampling probability for OpenTelemetry |
 | config.OBOT_SERVER_RETENTION_POLICY_HOURS | string | `""` | The retention policy for the system. Set to 0 to disable retention. Default is 2160 (90 days) if left blank. This field should just be a number in a string, no `h` suffix. |
-| config.OBOT_SERVER_UPDATE_CHECK_INTERVAL_MINS | string | `""` | The interval in minutes to check for Obot server updates. Set to 0 to disable. Defaults to 1440 minutes (1 day). |
 | config.OPENAI_API_KEY | string | `""` | An OpenAI API Key used to configure access to OpenAI models, which are the default in Obot. |
 | config.existingSecret | string | `""` | The name of an existing secret to use for config instead of creating a new one. Must contain keys in env format, just like below. |
 | dev.useEmbeddedDb | bool | `false` | For development/testing use only, enables the use of an postgres database embedded in the obot container. Do not use in production. |
