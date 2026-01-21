@@ -50,8 +50,8 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_MCPAUDIT_LOG_PERSIST_INTERVAL_SECONDS | string | `""` | The interval in seconds to persist MCP audit logs to the database. Defaults to 5 seconds. |
 | config.OBOT_SERVER_MCPBASE_IMAGE | string | `"ghcr.io/obot-platform/mcp-images/phat:main"` | Deploy MCP servers in the cluster using this base image. OBOT_SERVER_MCPNAMESPACE is automatically added to the secret if config.OBOT_SERVER_MCPBASE_IMAGE is set. |
 | config.OBOT_SERVER_MCPCLUSTER_DOMAIN | string | `""` | The cluster domain to use for MCP services. Defaults to cluster.local. Only matters if the above image is set. |
-| config.OBOT_SERVER_MCPHTTPWEBHOOK_BASE_IMAGE | string | `"ghcr.io/obot-platform/mcp-images/http-webhook-converter:main"` | Deploy MCP HTTP webhook servers in the cluster using this base image. |
-| config.OBOT_SERVER_MCPREMOTE_SHIM_BASE_IMAGE | string | `"ghcr.io/nanobot-ai/nanobot:v0.0.45"` | Deploy MCP remote shim servers in the cluster using this base image. |
+| config.OBOT_SERVER_MCPHTTPWEBHOOK_BASE_IMAGE | string | `"ghcr.io/obot-platform/mcp-images/http-webhook-mcp-converter:main"` | Deploy MCP HTTP webhook servers in the cluster using this base image. |
+| config.OBOT_SERVER_MCPREMOTE_SHIM_BASE_IMAGE | string | `"ghcr.io/nanobot-ai/nanobot:v0.0.50"` | Deploy MCP remote shim servers in the cluster using this base image. |
 | config.OBOT_SERVER_MCPRUNTIME_BACKEND | string | `"kubernetes"` | The runtime backend to use for MCP servers. Can be 'docker' or 'kubernetes'. Defaults to 'docker'. Setting this to 'kubernetes' will also create the necessary service account, role and rolebinding. |
 | config.OBOT_SERVER_OTEL_BASE_EXPORT_ENDPOINT | string | `""` | The base export endpoint for OpenTelemetry |
 | config.OBOT_SERVER_OTEL_BEARER_TOKEN | string | `""` | The bearer token for authentication with OpenTelemetry |
