@@ -67,7 +67,7 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | image.pullPolicy | string | `"IfNotPresent"` | Kubernetes image pullPolicy to use for Obot |
 | image.repository | string | `"ghcr.io/obot-platform/obot"` | The name of the docker repository for Obot. `ghcr.io/obot-platform/obot` for open-source or `ghcr.io/obot-platform/obot-enterprise` for enterprise. Please note that for enterprise you will need to set an `imagePullSecret` |
 | image.tag | string | `""` | The docker tag to pull for obot. If blank, will default to the chart appVersion |
-| imagePullSecrets | list | `[]` | Configures kubernetes secrets to use for pulling private images. Expects a list of objects. `imagePullSecrets:[{"name": "fooBar"}]` |
+| imagePullSecrets | list | `[]` | Kubernetes secrets used to pull the Obot server image. For private MCP server images, see mcpImagePullSecrets below. Expects a list of secret objects `imagePullSecrets:[{"name": "fooBar"}]` |
 | ingress.annotations | object | `{}` | Configure annotations to add to the ingress object |
 | ingress.className | string | `nil` | Configures a preexisting ingress class to use. |
 | ingress.enabled | bool | `false` | Enables ingress creation for Obot. |
