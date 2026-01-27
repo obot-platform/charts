@@ -79,6 +79,9 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | mcpImagePullSecrets | list | `[]` | Configuration for creating image pull secrets for MCP containers. Each entry should contain registry credentials that will be used to create Kubernetes secrets. |
 | mcpNamespace.annotations."argocd.argoproj.io/sync-wave" | string | `"-1"` |  |
 | mcpNamespace.name | string | `""` | The namespace in which to deploy the MCP servers. Will only be created if config.OBOT_SERVER_MCPBASE_IMAGE image is set. Defaults to {{ .Release.Name }}-mcp |
+| mcpNamespace.networkPolicy | object | `{"dnsNamespace":"kube-system","enabled":false}` | Network policy configuration for the MCP namespace |
+| mcpNamespace.networkPolicy.dnsNamespace | string | `"kube-system"` | The namespace where DNS pods are running. Default is kube-system. |
+| mcpNamespace.networkPolicy.enabled | bool | `false` | Enable network policy to restrict egress traffic from MCP servers. When enabled, MCP pods can only communicate with DNS, the Obot service, and public IP ranges. Default is false. |
 | mcpServerDefaults | object | `{"affinity":{},"resources":{},"tolerations":[]}` | Default Kubernetes configuration for all deployed MCP server pods |
 | mcpServerDefaults.affinity | object | `{}` | Affinity rules for MCP server pods (YAML format) When set via Helm, these settings cannot be updated through the API |
 | mcpServerDefaults.resources | object | `{}` | Resource requests and limits for MCP server pods When set via Helm, these settings cannot be updated through the API |
