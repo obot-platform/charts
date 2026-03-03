@@ -34,8 +34,12 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_AUDIT_LOGS_STORE_S3BUCKET | string | `""` | The name of the S3 bucket to store audit logs in. Only used if config.OBOT_SERVER_AUDIT_LOGS_MODE is 's3' |
 | config.OBOT_SERVER_AUDIT_LOGS_STORE_S3ENDPOINT | string | `""` | If config.OBOT_SERVER_AUDIT_LOGS_MODE is 's3' and you are not using AWS S3, this needs to be set to the S3 api endpoint of your provider. |
 | config.OBOT_SERVER_AUDIT_LOGS_USE_PATH_STYLE | bool | `false` | Whether to use path style for S3 |
+| config.OBOT_SERVER_AUTHENTICATED_RATE_LIMIT | string | `""` | Rate limit for authenticated non-admin requests in requests per second. Tracked by user ID. Admin users are exempt. Defaults to 200. |
 | config.OBOT_SERVER_AUTH_ADMIN_EMAILS | string | `""` | A comma separated list of email addresses that will have the Admin role in Obot. |
 | config.OBOT_SERVER_AUTH_OWNER_EMAILS | string | `""` | A comma separated list of email addresses that will have the Owner role in Obot. |
+| config.OBOT_SERVER_DAILY_USER_COMPLETION_TOKEN_LIMIT | string | `""` | The maximum number of completion/output tokens allowed per user per day. Set <= 0 to disable this limit. Defaults to 100000. |
+| config.OBOT_SERVER_DAILY_USER_PROMPT_TOKEN_LIMIT | string | `""` | The maximum number of prompt/input tokens allowed per user per day. Set <= 0 to disable this limit. Defaults to 10000000. |
+| config.OBOT_SERVER_DISABLE_LEGACY_CHAT | bool | `true` | Disable legacy chat APIs/UX paths. Defaults to true. |
 | config.OBOT_SERVER_DISABLE_UPDATE_CHECK | string | `""` | Disable the Obot server update check. Defaults to false. |
 | config.OBOT_SERVER_DISALLOW_LOCALHOST_MCP | string | `""` | disallow MCP servers that try to connect to localhost. Defaults to false. |
 | config.OBOT_SERVER_DSN | string | `""` | The DSN for your database. For example: postgres://<username>:<password>@<hostname>/<db_name> |
@@ -48,15 +52,19 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_KNOWLEDGE_FILE_WORKERS | string | `"5"` | Advanced - sets the number of workers for knowledge |
 | config.OBOT_SERVER_MCPAUDIT_LOGS_PERSIST_BATCH_SIZE | string | `""` | The batch size to use when persisting MCP audit logs to the database. Defaults to 1000 |
 | config.OBOT_SERVER_MCPAUDIT_LOG_PERSIST_INTERVAL_SECONDS | string | `""` | The interval in seconds to persist MCP audit logs to the database. Defaults to 5 seconds. |
-| config.OBOT_SERVER_MCPBASE_IMAGE | string | `"ghcr.io/obot-platform/mcp-images/phat:main"` | Deploy MCP servers in the cluster using this base image. OBOT_SERVER_MCPNAMESPACE is automatically added to the secret if config.OBOT_SERVER_MCPBASE_IMAGE is set. |
+| config.OBOT_SERVER_MCPBASE_IMAGE | string | `"ghcr.io/obot-platform/mcp-images/phat"` | Deploy MCP servers in the cluster using this base image. OBOT_SERVER_MCPNAMESPACE is automatically added to the secret if config.OBOT_SERVER_MCPBASE_IMAGE is set. If no tag is specified, the chart's appVersion will be used unless it starts with '0.0.0', in which case the 'main' tag will be used. |
 | config.OBOT_SERVER_MCPCLUSTER_DOMAIN | string | `""` | The cluster domain to use for MCP services. Defaults to cluster.local. Only matters if the above image is set. |
 | config.OBOT_SERVER_MCPHTTPWEBHOOK_BASE_IMAGE | string | `"ghcr.io/obot-platform/mcp-images/http-webhook-mcp-converter:main"` | Deploy MCP HTTP webhook servers in the cluster using this base image. |
-| config.OBOT_SERVER_MCPREMOTE_SHIM_BASE_IMAGE | string | `"ghcr.io/nanobot-ai/nanobot:v0.0.52"` | Deploy MCP remote shim servers in the cluster using this base image. |
+| config.OBOT_SERVER_MCPREMOTE_SHIM_BASE_IMAGE | string | `"ghcr.io/nanobot-ai/nanobot:v0.0.56"` | Deploy MCP remote shim servers in the cluster using this base image. |
 | config.OBOT_SERVER_MCPRUNTIME_BACKEND | string | `"kubernetes"` | The runtime backend to use for MCP servers. Can be 'docker' or 'kubernetes'. Defaults to 'docker'. Setting this to 'kubernetes' will also create the necessary service account, role and rolebinding. |
+| config.OBOT_SERVER_MCPSERVER_SEARCH_IMAGE | string | `"ghcr.io/obot-platform/obot-mcp-server:v0.0.1"` | The container image to use for the MCP server search functionality. Defaults to ghcr.io/obot-platform/obot-mcp-server:v0.0.1 |
+| config.OBOT_SERVER_NANOBOT_AGENT_IMAGE | string | `"ghcr.io/nanobot-ai/nanobot:v0.0.56"` | Container image for the Nanobot agent MCP server. |
+| config.OBOT_SERVER_NANOBOT_INTEGRATION | bool | `true` | Enable Nanobot integration. Defaults to true. |
 | config.OBOT_SERVER_OTEL_BASE_EXPORT_ENDPOINT | string | `""` | The base export endpoint for OpenTelemetry |
 | config.OBOT_SERVER_OTEL_BEARER_TOKEN | string | `""` | The bearer token for authentication with OpenTelemetry |
 | config.OBOT_SERVER_OTEL_SAMPLE_PROB | string | `""` | The sampling probability for OpenTelemetry |
 | config.OBOT_SERVER_RETENTION_POLICY_HOURS | string | `""` | The retention policy for the system. Set to 0 to disable retention. Default is 2160 (90 days) if left blank. This field should just be a number in a string, no `h` suffix. |
+| config.OBOT_SERVER_UNAUTHENTICATED_RATE_LIMIT | string | `""` | Rate limit for unauthenticated requests in requests per second. Tracked by source IP address. Defaults to 100. |
 | config.OPENAI_API_KEY | string | `""` | An OpenAI API Key used to configure access to OpenAI models, which are the default in Obot. |
 | config.existingSecret | string | `""` | The name of an existing secret to use for config instead of creating a new one. Must contain keys in env format, just like below. |
 | dev.useEmbeddedDb | bool | `false` | For development/testing use only, enables the use of an postgres database embedded in the obot container. Do not use in production. |
@@ -79,12 +87,23 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | mcpImagePullSecrets | list | `[]` | Configuration for creating image pull secrets for MCP containers. Each entry should contain registry credentials that will be used to create Kubernetes secrets. |
 | mcpNamespace.annotations."argocd.argoproj.io/sync-wave" | string | `"-1"` |  |
 | mcpNamespace.name | string | `""` | The namespace in which to deploy the MCP servers. Will only be created if config.OBOT_SERVER_MCPBASE_IMAGE image is set. Defaults to {{ .Release.Name }}-mcp |
-| mcpNamespace.networkPolicy | object | `{"dnsNamespace":"kube-system","enabled":false}` | Network policy configuration for the MCP namespace |
-| mcpNamespace.networkPolicy.dnsNamespace | string | `"kube-system"` | The namespace where DNS pods are running. Default is kube-system. |
-| mcpNamespace.networkPolicy.enabled | bool | `false` | Enable network policy to restrict egress traffic from MCP servers. When enabled, MCP pods can only communicate with DNS, the Obot service, and public IP ranges. Default is false. |
-| mcpServerDefaults | object | `{"affinity":{},"resources":{},"tolerations":[]}` | Default Kubernetes configuration for all deployed MCP server pods |
+| mcpNamespace.networkPolicy | object | `{"dnsNamespace":"kube-system","enabled":true}` | Network policy configuration for the MCP namespace |
+| mcpNamespace.networkPolicy.dnsNamespace | string | `"kube-system"` | The namespace where DNS pods are running. Default is kube-system. Adjust if your cluster uses a different namespace for DNS services. |
+| mcpNamespace.networkPolicy.enabled | bool | `true` | Enable network policy to restrict traffic to/from MCP servers. Default is true, and is recommended for production deployments. |
+| mcpNamespace.podSecurity | object | `{"audit":"restricted","auditVersion":"latest","enabled":true,"enforce":"restricted","enforceVersion":"latest","warn":"restricted","warnVersion":"latest"}` | Pod Security Admission configuration for the MCP namespace |
+| mcpNamespace.podSecurity.audit | string | `"restricted"` | Pod Security Standards level to audit (privileged, baseline, or restricted). Default is restricted. |
+| mcpNamespace.podSecurity.auditVersion | string | `"latest"` | Kubernetes version for the audit policy. Default is latest. |
+| mcpNamespace.podSecurity.enabled | bool | `true` | Enable Pod Security Admission labels on the MCP namespace. Default is true. |
+| mcpNamespace.podSecurity.enforce | string | `"restricted"` | Pod Security Standards level to enforce (privileged, baseline, or restricted). Default is restricted. |
+| mcpNamespace.podSecurity.enforceVersion | string | `"latest"` | Kubernetes version for the enforce policy. Default is latest. |
+| mcpNamespace.podSecurity.warn | string | `"restricted"` | Pod Security Standards level to warn about (privileged, baseline, or restricted). Default is restricted. |
+| mcpNamespace.podSecurity.warnVersion | string | `"latest"` | Kubernetes version for the warn policy. Default is latest. |
+| mcpServerDefaults | object | `{"affinity":{},"nanobotWorkspaceSize":"","resources":{},"runtimeClassName":"","storageClassName":"","tolerations":[]}` | Default Kubernetes configuration for all deployed MCP server pods |
 | mcpServerDefaults.affinity | object | `{}` | Affinity rules for MCP server pods (YAML format) When set via Helm, these settings cannot be updated through the API |
+| mcpServerDefaults.nanobotWorkspaceSize | string | `""` | Size for nanobot workspace volumes (e.g., 1Gi) |
 | mcpServerDefaults.resources | object | `{}` | Resource requests and limits for MCP server pods When set via Helm, these settings cannot be updated through the API |
+| mcpServerDefaults.runtimeClassName | string | `""` | RuntimeClass name for MCP server pods This allows running MCP servers with specific container runtimes (e.g., gVisor, Kata) |
+| mcpServerDefaults.storageClassName | string | `""` | StorageClass name for nanobot workspace volumes |
 | mcpServerDefaults.tolerations | list | `[]` | Tolerations for MCP server pods (YAML list format) When set via Helm, these settings cannot be updated through the API |
 | nodeSelector | object | `{}` | Configure node selector for pod assignment |
 | persistence.accessModes | list | `["ReadWriteOnce"]` | Persistent Volume access modes |
@@ -96,6 +115,7 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | podAnnotations | object | `{}` | Extra pod annotations to add. |
 | replicaCount | int | `1` | The number of Obot server instances to run |
 | resources | object | `{}` | Resource requests and limits to use for Obot |
+| runtimeClassName | string | `""` | RuntimeClass name for Obot server pods. This allows running Obot with specific container runtimes (e.g., gVisor, Kata). |
 | service.annotations | object | `{}` | Extra annotations to add to service object |
 | service.port | int | `80` | Port for the Kubernetes service to expose |
 | service.spec | object | `{}` | Any extra fields to add to the service object spec |
