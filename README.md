@@ -55,10 +55,10 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_MCPBASE_IMAGE | string | `"ghcr.io/obot-platform/mcp-images/phat"` | Deploy MCP servers in the cluster using this base image. OBOT_SERVER_MCPNAMESPACE is automatically added to the secret if config.OBOT_SERVER_MCPBASE_IMAGE is set. If no tag is specified, the chart's appVersion will be used unless it starts with '0.0.0', in which case the 'main' tag will be used. |
 | config.OBOT_SERVER_MCPCLUSTER_DOMAIN | string | `""` | The cluster domain to use for MCP services. Defaults to cluster.local. Only matters if the above image is set. |
 | config.OBOT_SERVER_MCPHTTPWEBHOOK_BASE_IMAGE | string | `"ghcr.io/obot-platform/mcp-images/http-webhook-mcp-converter:main"` | Deploy MCP HTTP webhook servers in the cluster using this base image. |
-| config.OBOT_SERVER_MCPREMOTE_SHIM_BASE_IMAGE | string | `"ghcr.io/nanobot-ai/nanobot:v0.0.56"` | Deploy MCP remote shim servers in the cluster using this base image. |
+| config.OBOT_SERVER_MCPREMOTE_SHIM_BASE_IMAGE | string | `"ghcr.io/nanobot-ai/nanobot:v0.0.58"` | Deploy MCP remote shim servers in the cluster using this base image. |
 | config.OBOT_SERVER_MCPRUNTIME_BACKEND | string | `"kubernetes"` | The runtime backend to use for MCP servers. Can be 'docker' or 'kubernetes'. Defaults to 'docker'. Setting this to 'kubernetes' will also create the necessary service account, role and rolebinding. |
 | config.OBOT_SERVER_MCPSERVER_SEARCH_IMAGE | string | `"ghcr.io/obot-platform/obot-mcp-server:v0.0.1"` | The container image to use for the MCP server search functionality. Defaults to ghcr.io/obot-platform/obot-mcp-server:v0.0.1 |
-| config.OBOT_SERVER_NANOBOT_AGENT_IMAGE | string | `"ghcr.io/nanobot-ai/nanobot:v0.0.56"` | Container image for the Nanobot agent MCP server. |
+| config.OBOT_SERVER_NANOBOT_AGENT_IMAGE | string | `"ghcr.io/nanobot-ai/nanobot:v0.0.58"` | Container image for the Nanobot agent MCP server. |
 | config.OBOT_SERVER_NANOBOT_INTEGRATION | bool | `true` | Enable Nanobot integration. Defaults to true. |
 | config.OBOT_SERVER_OTEL_BASE_EXPORT_ENDPOINT | string | `""` | The base export endpoint for OpenTelemetry |
 | config.OBOT_SERVER_OTEL_BEARER_TOKEN | string | `""` | The bearer token for authentication with OpenTelemetry |
