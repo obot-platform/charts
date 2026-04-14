@@ -60,21 +60,24 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_ENCRYPTION_KEY | string | `""` | The key to use for encryption. Only used if config.OBOT_SERVER_ENCRYPTION_PROVIDER is 'custom'. A key can be generated with `openssl rand -base64 32` |
 | config.OBOT_SERVER_ENCRYPTION_PROVIDER | string | `""` | Configures an encryption provider for credentials in Obot |
 | config.OBOT_SERVER_HOSTNAME | string | `""` | The hostname of your Obot instance, including protocol |
+| config.OBOT_SERVER_IDLE_AGENT_SHUTDOWN_HOURS | string | `""` | The interval in hours to check for idle agents and shut them down. Set to -1 to disable. Defaults to 72. |
 | config.OBOT_SERVER_KNOWLEDGE_FILE_WORKERS | string | `"5"` | Advanced - sets the number of workers for knowledge |
 | config.OBOT_SERVER_MCPAUDIT_LOGS_PERSIST_BATCH_SIZE | string | `""` | The batch size to use when persisting MCP audit logs to the database. Defaults to 1000 |
 | config.OBOT_SERVER_MCPAUDIT_LOG_PERSIST_INTERVAL_SECONDS | string | `""` | The interval in seconds to persist MCP audit logs to the database. Defaults to 5 seconds. |
-| config.OBOT_SERVER_MCPBASE_IMAGE | string | `"ghcr.io/obot-platform/mcp-images/phat"` | Deploy MCP servers in the cluster using this base image. OBOT_SERVER_MCPNAMESPACE is automatically added to the secret if config.OBOT_SERVER_MCPBASE_IMAGE is set. If no tag is specified, the chart's appVersion will be used unless it starts with '0.0.0', in which case the 'main' tag will be used. |
+| config.OBOT_SERVER_MCPBASE_IMAGE | string | `""` | Deploy MCP servers in the cluster using this base image. OBOT_SERVER_MCPNAMESPACE is automatically added to the secret if config.OBOT_SERVER_MCPBASE_IMAGE is set. If no tag is specified, the chart's appVersion will be used unless it starts with '0.0.0', in which case the 'main' tag will be used. |
 | config.OBOT_SERVER_MCPCLUSTER_DOMAIN | string | `""` | The cluster domain to use for MCP services. Defaults to cluster.local. Only matters if the above image is set. |
-| config.OBOT_SERVER_MCPHTTPWEBHOOK_BASE_IMAGE | string | `"ghcr.io/obot-platform/mcp-images/http-webhook-mcp-converter:main"` | Deploy MCP HTTP webhook servers in the cluster using this base image. |
-| config.OBOT_SERVER_MCPREMOTE_SHIM_BASE_IMAGE | string | `"ghcr.io/nanobot-ai/nanobot:v0.0.60"` | Deploy MCP remote shim servers in the cluster using this base image. |
+| config.OBOT_SERVER_MCPHTTPWEBHOOK_BASE_IMAGE | string | `""` | Deploy MCP HTTP webhook servers in the cluster using this base image. |
+| config.OBOT_SERVER_MCPREMOTE_SHIM_BASE_IMAGE | string | `""` | Deploy MCP remote shim servers in the cluster using this base image. |
 | config.OBOT_SERVER_MCPRUNTIME_BACKEND | string | `"kubernetes"` | The runtime backend to use for MCP servers. Can be 'docker' or 'kubernetes'. Defaults to 'docker'. Setting this to 'kubernetes' will also create the necessary service account, role and rolebinding. |
-| config.OBOT_SERVER_MCPSERVER_SEARCH_IMAGE | string | `"ghcr.io/obot-platform/obot-mcp-server:v0.1.0"` | The container image to use for the MCP server search functionality. Defaults to ghcr.io/obot-platform/obot-mcp-server:v0.1.0 |
-| config.OBOT_SERVER_NANOBOT_AGENT_IMAGE | string | `"ghcr.io/nanobot-ai/nanobot-agent:v0.0.60"` | Container image for the Nanobot agent MCP server. |
+| config.OBOT_SERVER_MCPSERVER_SEARCH_IMAGE | string | `""` | The container image to use for the MCP server search functionality. |
+| config.OBOT_SERVER_MULTI_USER_IDLE_SERVER_SHUTDOWN_HOURS | string | `""` | The interval in hours to check for idle multi-user MCP servers and shut them down. Set to -1 to disable. Defaults to 168. |
+| config.OBOT_SERVER_NANOBOT_AGENT_IMAGE | string | `""` | Container image for the Nanobot agent MCP server. |
 | config.OBOT_SERVER_NANOBOT_INTEGRATION | bool | `true` | Enable Nanobot integration. Defaults to true. |
 | config.OBOT_SERVER_OTEL_BASE_EXPORT_ENDPOINT | string | `""` | The base export endpoint for OpenTelemetry |
 | config.OBOT_SERVER_OTEL_BEARER_TOKEN | string | `""` | The bearer token for authentication with OpenTelemetry |
 | config.OBOT_SERVER_OTEL_SAMPLE_PROB | string | `""` | The sampling probability for OpenTelemetry |
 | config.OBOT_SERVER_RETENTION_POLICY_HOURS | string | `""` | The retention policy for the system. Set to 0 to disable retention. Default is 2160 (90 days) if left blank. This field should just be a number in a string, no `h` suffix. |
+| config.OBOT_SERVER_SINGLE_USER_IDLE_SERVER_SHUTDOWN_HOURS | string | `""` | The interval in hours to check for idle single-user MCP servers and shut them down. Set to -1 to disable. Defaults to 24. |
 | config.OBOT_SERVER_UNAUTHENTICATED_RATE_LIMIT | string | `""` | Rate limit for unauthenticated requests in requests per second. Tracked by source IP address. Defaults to 100. |
 | config.OPENAI_API_KEY | string | `""` | An OpenAI API Key used to configure access to OpenAI models, which are the default in Obot. |
 | config.existingSecret | string | `""` | The name of an existing secret to use for config instead of creating a new one. Must contain keys in env format, just like below. |
