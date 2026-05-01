@@ -1,9 +1,20 @@
 apiVersion: v1
 entries:
+  aviatrix-network-policy-controller:
+  - apiVersion: v2
+    appVersion: v0.0.1
+    created: "2026-05-01T20:31:54.239409656Z"
+    description: Aviatrix FirewallPolicy reconciler for Obot MCP network policies
+    digest: e4836c8dc7d8ffcfd9080027840aa069e296626965d15f560a1d524f0270216a
+    name: aviatrix-network-policy-controller
+    type: application
+    urls:
+    - https://charts.obot.ai/charts/aviatrix-network-policy-controller-v0.0.1.tgz
+    version: v0.0.1
   obot:
   - apiVersion: v2
     appVersion: v0.20.1
-    created: "2026-04-30T00:36:27.530658468Z"
+    created: "2026-05-01T20:31:54.275782484Z"
     description: A Helm chart for Obot
     digest: d9c06a076a8db4db0066e651774bf6a21c0b061441e03f8fdd6ca64ac6b7f936
     name: obot
@@ -12,7 +23,7 @@ entries:
     version: v0.20.1
   - apiVersion: v2
     appVersion: v0.20.0
-    created: "2026-04-30T00:36:27.529783156Z"
+    created: "2026-05-01T20:31:54.274966233Z"
     description: A Helm chart for Obot
     digest: 606d7ccc6cbc40e3b1e3ded0ae0a841351bcf74dd370415e802d3bb5b0032d09
     name: obot
@@ -21,7 +32,7 @@ entries:
     version: v0.20.0
   - apiVersion: v2
     appVersion: v0.20.0-rc2
-    created: "2026-04-30T00:36:27.528553268Z"
+    created: "2026-05-01T20:31:54.274140534Z"
     description: A Helm chart for Obot
     digest: 1bbc0a354ebd4df946710fbdfd5a5478d3715a27a78c8ed01e72ffa28db5dda0
     name: obot
@@ -30,7 +41,7 @@ entries:
     version: v0.20.0-rc2
   - apiVersion: v2
     appVersion: v0.20.0-rc1
-    created: "2026-04-30T00:36:27.52714169Z"
+    created: "2026-05-01T20:31:54.273293706Z"
     description: A Helm chart for Obot
     digest: b1d147d8054a1194895ff73027adc089938572466d78d1c3f79ecf57deafb7de
     name: obot
@@ -39,7 +50,7 @@ entries:
     version: v0.20.0-rc1
   - apiVersion: v2
     appVersion: v0.19.2
-    created: "2026-04-30T00:36:27.526306358Z"
+    created: "2026-05-01T20:31:54.272467447Z"
     description: A Helm chart for Obot
     digest: e082a973a36371d5dc93ae3d2484614ac564cddcb3d5b9bd5d5f5dbd26fa7556
     name: obot
@@ -48,7 +59,7 @@ entries:
     version: v0.19.2
   - apiVersion: v2
     appVersion: v0.19.1
-    created: "2026-04-30T00:36:27.525471116Z"
+    created: "2026-05-01T20:31:54.271579973Z"
     description: A Helm chart for Obot
     digest: 9475943ed2b818bb4ef423f2a61797233401d736a1e096ee7165a73cbe973942
     name: obot
@@ -57,7 +68,7 @@ entries:
     version: v0.19.1
   - apiVersion: v2
     appVersion: v0.19.1-rc2
-    created: "2026-04-30T00:36:27.524618539Z"
+    created: "2026-05-01T20:31:54.269880318Z"
     description: A Helm chart for Obot
     digest: 16f9b0e9c50f17ec608af92ed0c493b6a4b9ec5d95957e2ef39d2278b500087d
     name: obot
@@ -66,7 +77,7 @@ entries:
     version: v0.19.1-rc2
   - apiVersion: v2
     appVersion: v0.19.1-rc1
-    created: "2026-04-30T00:36:27.52377199Z"
+    created: "2026-05-01T20:31:54.269037617Z"
     description: A Helm chart for Obot
     digest: d44465f13b75b353acb6746fc2f56e00e2f444ef258b20595f406990337c1f7c
     name: obot
@@ -75,7 +86,7 @@ entries:
     version: v0.19.1-rc1
   - apiVersion: v2
     appVersion: v0.19.0
-    created: "2026-04-30T00:36:27.522915797Z"
+    created: "2026-05-01T20:31:54.268162417Z"
     description: A Helm chart for Obot
     digest: 8aa207e06aa80929bcbab3fe7de48c245397313d083fc57d3ba81f81ac66d565
     name: obot
@@ -84,7 +95,7 @@ entries:
     version: v0.19.0
   - apiVersion: v2
     appVersion: v0.19.0-rc1
-    created: "2026-04-30T00:36:27.52204957Z"
+    created: "2026-05-01T20:31:54.267298627Z"
     description: A Helm chart for Obot
     digest: 5312a4fd1b19393f0dee0ca75c8fb6f9efca302b491ffefa0a8a201b445b5c96
     name: obot
@@ -93,7 +104,7 @@ entries:
     version: v0.19.0-rc1
   - apiVersion: v2
     appVersion: v0.18.2-rc1
-    created: "2026-04-30T00:36:27.520829265Z"
+    created: "2026-05-01T20:31:54.266299104Z"
     description: A Helm chart for Obot
     digest: e107c5e1d07e06ec5cad0a03609c2d9be318e6f3333a04b0c12674070645252e
     name: obot
@@ -102,7 +113,7 @@ entries:
     version: v0.18.2-rc1
   - apiVersion: v2
     appVersion: v0.18.1
-    created: "2026-04-30T00:36:27.519352229Z"
+    created: "2026-05-01T20:31:54.265444552Z"
     description: A Helm chart for Obot
     digest: 91c689aaf15e78f235ecdf9e209e94c1ce5880ef8841dcadf0e8a859fef52194
     name: obot
@@ -111,7 +122,7 @@ entries:
     version: v0.18.1
   - apiVersion: v2
     appVersion: v0.18.0
-    created: "2026-04-30T00:36:27.518483868Z"
+    created: "2026-05-01T20:31:54.264406707Z"
     description: A Helm chart for Obot
     digest: e34b428ba83ea4b093de52ce14313368b8a4236bf75b499f1b2c4c2146be85b4
     name: obot
@@ -120,7 +131,7 @@ entries:
     version: v0.18.0
   - apiVersion: v2
     appVersion: v0.18.0-rc1
-    created: "2026-04-30T00:36:27.517646623Z"
+    created: "2026-05-01T20:31:54.262563017Z"
     description: A Helm chart for Obot
     digest: 2cf589abab5838bbadcdca40ea3838e0170e8424345a6cba6a6f13cbaa3e390d
     name: obot
@@ -129,7 +140,7 @@ entries:
     version: v0.18.0-rc1
   - apiVersion: v2
     appVersion: v0.17.1
-    created: "2026-04-30T00:36:27.516808598Z"
+    created: "2026-05-01T20:31:54.261394639Z"
     description: A Helm chart for Obot
     digest: 72206246ee8b2561ec0000ffa0b983c852e67417b21daccf200c77b4847d79b4
     name: obot
@@ -138,7 +149,7 @@ entries:
     version: v0.17.1
   - apiVersion: v2
     appVersion: v0.17.0
-    created: "2026-04-30T00:36:27.516041417Z"
+    created: "2026-05-01T20:31:54.260595951Z"
     description: A Helm chart for Obot
     digest: 72d7c482ed5eba1038094b5cd072da10c150889f85fab58c13cf9d1f86f684c4
     name: obot
@@ -147,7 +158,7 @@ entries:
     version: v0.17.0
   - apiVersion: v2
     appVersion: v0.17.0-rc2
-    created: "2026-04-30T00:36:27.515218634Z"
+    created: "2026-05-01T20:31:54.259851964Z"
     description: A Helm chart for Obot
     digest: 08dac87f91549933c4a05d9ac6fc60034a8ed9e30ba021cf452413d1b8ccd355
     name: obot
@@ -156,7 +167,7 @@ entries:
     version: v0.17.0-rc2
   - apiVersion: v2
     appVersion: v0.17.0-rc1
-    created: "2026-04-30T00:36:27.514335471Z"
+    created: "2026-05-01T20:31:54.259075598Z"
     description: A Helm chart for Obot
     digest: aa34c9cb8f19390d5b84c607aab5a5380e9d9c0cd9150f1296bfcd1e4c9c4b10
     name: obot
@@ -165,7 +176,7 @@ entries:
     version: v0.17.0-rc1
   - apiVersion: v2
     appVersion: v0.16.4
-    created: "2026-04-30T00:36:27.512734562Z"
+    created: "2026-05-01T20:31:54.258260368Z"
     description: A Helm chart for Obot
     digest: c6b1b19a8ae470459be727c79be8a0648e1f874f67f460e4f1b568bff37be8d1
     name: obot
@@ -174,7 +185,7 @@ entries:
     version: v0.16.4
   - apiVersion: v2
     appVersion: v0.16.3
-    created: "2026-04-30T00:36:27.512089453Z"
+    created: "2026-05-01T20:31:54.257551207Z"
     description: A Helm chart for Obot
     digest: 11126970bafa5a5e263805e9df72ba14fb9216bfe3a7cfa184a15d1adea55527
     name: obot
@@ -183,7 +194,7 @@ entries:
     version: v0.16.3
   - apiVersion: v2
     appVersion: v0.16.2
-    created: "2026-04-30T00:36:27.511425526Z"
+    created: "2026-05-01T20:31:54.25684448Z"
     description: A Helm chart for Obot
     digest: e926ce82af2c86214064f5e741de56dc425b1d4c277bc9a8d632eb75b9406d44
     name: obot
@@ -192,7 +203,7 @@ entries:
     version: v0.16.2
   - apiVersion: v2
     appVersion: v0.16.1
-    created: "2026-04-30T00:36:27.51073533Z"
+    created: "2026-05-01T20:31:54.255250294Z"
     description: A Helm chart for Obot
     digest: fe7e62bf03105cf53669ea42115df8f90f2e8ab8919465b67398cf58de3e6fa2
     name: obot
@@ -201,7 +212,7 @@ entries:
     version: v0.16.1
   - apiVersion: v2
     appVersion: v0.16.0
-    created: "2026-04-30T00:36:27.510111462Z"
+    created: "2026-05-01T20:31:54.254622284Z"
     description: A Helm chart for Obot
     digest: af4484ff237587c1299deeccabbb23e525f0aa2202c34726bbb9c86243708054
     name: obot
@@ -210,7 +221,7 @@ entries:
     version: v0.16.0
   - apiVersion: v2
     appVersion: v0.16.0-rc1
-    created: "2026-04-30T00:36:27.509453494Z"
+    created: "2026-05-01T20:31:54.253997529Z"
     description: A Helm chart for Obot
     digest: 75e5cdd6bbd7aa417759f2b1bad0061698f95fa8d89183d482f19c5f910d3095
     name: obot
@@ -219,7 +230,7 @@ entries:
     version: v0.16.0-rc1
   - apiVersion: v2
     appVersion: v0.16-4-rc1
-    created: "2026-04-30T00:36:27.508770028Z"
+    created: "2026-05-01T20:31:54.253334253Z"
     description: A Helm chart for Obot
     digest: abc7e2e7bd56073b722964e08933aa12e9faf945480bb4db7949f0bbf2dcdd0e
     name: obot
@@ -228,7 +239,7 @@ entries:
     version: v0.16-4-rc1
   - apiVersion: v2
     appVersion: v0.15.1
-    created: "2026-04-30T00:36:27.508051079Z"
+    created: "2026-05-01T20:31:54.252679383Z"
     description: A Helm chart for Obot
     digest: 2efd7f94f2771b1010e07048cf7039a7c5945d100b8dba3d6f84091fbe665d45
     name: obot
@@ -237,7 +248,7 @@ entries:
     version: v0.15.1
   - apiVersion: v2
     appVersion: v0.15.0
-    created: "2026-04-30T00:36:27.507312241Z"
+    created: "2026-05-01T20:31:54.251983636Z"
     description: A Helm chart for Obot
     digest: a214e6f48058d0a3aed7eb467ca6aaee980f9d3e6a8ff0053da746a389e96556
     name: obot
@@ -246,7 +257,7 @@ entries:
     version: v0.15.0
   - apiVersion: v2
     appVersion: v0.14.0
-    created: "2026-04-30T00:36:27.50580488Z"
+    created: "2026-05-01T20:31:54.251328105Z"
     description: A Helm chart for Obot
     digest: 88328b855fdf2e16510b5363a54ca508104c04f1e4af03fd70d45f10155d2445
     name: obot
@@ -255,7 +266,7 @@ entries:
     version: v0.14.0
   - apiVersion: v2
     appVersion: v0.14.0-rc6
-    created: "2026-04-30T00:36:27.505191889Z"
+    created: "2026-05-01T20:31:54.250711947Z"
     description: A Helm chart for Obot
     digest: f8f1e083171f8fd6b82204f20fea5a61939c7a0e11f612f0705e8d7d8d1a9404
     name: obot
@@ -264,7 +275,7 @@ entries:
     version: v0.14.0-rc6
   - apiVersion: v2
     appVersion: v0.14.0-rc5
-    created: "2026-04-30T00:36:27.504515003Z"
+    created: "2026-05-01T20:31:54.250007384Z"
     description: A Helm chart for Obot
     digest: d430d25b6fc2a61167f75e3930961fe127b165a72ebc97ea9c692b0e99329e68
     name: obot
@@ -273,7 +284,7 @@ entries:
     version: v0.14.0-rc5
   - apiVersion: v2
     appVersion: v0.14.0-rc3
-    created: "2026-04-30T00:36:27.503903043Z"
+    created: "2026-05-01T20:31:54.248764783Z"
     description: A Helm chart for Obot
     digest: 43cdc5565b6408325769133d702381a14dde9b944b051e5c0c85a1cd85d8223a
     name: obot
@@ -282,7 +293,7 @@ entries:
     version: v0.14.0-rc3
   - apiVersion: v2
     appVersion: v0.14.0-rc2
-    created: "2026-04-30T00:36:27.503261339Z"
+    created: "2026-05-01T20:31:54.247937892Z"
     description: A Helm chart for Obot
     digest: 5821010be346ce0a3cbbd4d8b4e67e96cdf6a755ac47afd4923a918ec61f8957
     name: obot
@@ -291,7 +302,7 @@ entries:
     version: v0.14.0-rc2
   - apiVersion: v2
     appVersion: v0.14.0-rc1
-    created: "2026-04-30T00:36:27.50258941Z"
+    created: "2026-05-01T20:31:54.247292829Z"
     description: A Helm chart for Obot
     digest: 06ccaecfb626876c370101a647a10a625cf5b8fd70be3adbabe7d881c078d677
     name: obot
@@ -300,7 +311,7 @@ entries:
     version: v0.14.0-rc1
   - apiVersion: v2
     appVersion: v0.13.0
-    created: "2026-04-30T00:36:27.501934446Z"
+    created: "2026-05-01T20:31:54.246610188Z"
     description: A Helm chart for Obot
     digest: bdb489e99b1533695c85a8c0fdd7648660b6807b8e590853cad475f28b574658
     name: obot
@@ -309,7 +320,7 @@ entries:
     version: v0.13.0
   - apiVersion: v2
     appVersion: v0.13.0-rc2
-    created: "2026-04-30T00:36:27.501203971Z"
+    created: "2026-05-01T20:31:54.245960577Z"
     description: A Helm chart for Obot
     digest: f9e62fcad39a9358db360174cd3d05f1cd9b530bd45fff30662d256b9d8e1a6c
     name: obot
@@ -318,7 +329,7 @@ entries:
     version: v0.13.0-rc2
   - apiVersion: v2
     appVersion: v0.13.0-rc1
-    created: "2026-04-30T00:36:27.500493384Z"
+    created: "2026-05-01T20:31:54.245312549Z"
     description: A Helm chart for Obot
     digest: 3e353e89a3e2893e3015ae789fe132bccc0e9033f0e50780f91bb9226ece73fd
     name: obot
@@ -327,7 +338,7 @@ entries:
     version: v0.13.0-rc1
   - apiVersion: v2
     appVersion: v0.12.1-rc1
-    created: "2026-04-30T00:36:27.498944691Z"
+    created: "2026-05-01T20:31:54.244690069Z"
     description: A Helm chart for Obot
     digest: 4914a118a1467f26d2925eeff9b82acab5085f217079f646da42d8d381e354db
     name: obot
@@ -336,7 +347,7 @@ entries:
     version: v0.12.1-rc1
   - apiVersion: v2
     appVersion: v0.12.0
-    created: "2026-04-30T00:36:27.498346973Z"
+    created: "2026-05-01T20:31:54.244045909Z"
     description: A Helm chart for Obot
     digest: 1c4cce91e111b98f76a7aaee7383204ccacdcb1aad3fbfced31a267fa48469ac
     name: obot
@@ -345,7 +356,7 @@ entries:
     version: v0.12.0
   - apiVersion: v2
     appVersion: v0.12.0-rc1
-    created: "2026-04-30T00:36:27.497704378Z"
+    created: "2026-05-01T20:31:54.243353518Z"
     description: A Helm chart for Obot
     digest: b8b1928494057a9164a0279600f57370fe19ba0a736499d8d81d52029dbabdf3
     name: obot
@@ -354,7 +365,7 @@ entries:
     version: v0.12.0-rc1
   - apiVersion: v2
     appVersion: v0.11.0
-    created: "2026-04-30T00:36:27.497105878Z"
+    created: "2026-05-01T20:31:54.242696594Z"
     description: A Helm chart for Obot
     digest: f613f5ff4dda76ebd03137727fdd7b50ce1a1781c6824564e2c0dda510c7ed84
     name: obot
@@ -363,7 +374,7 @@ entries:
     version: v0.11.0
   - apiVersion: v2
     appVersion: v0.11.0-rc1
-    created: "2026-04-30T00:36:27.496499116Z"
+    created: "2026-05-01T20:31:54.241140441Z"
     description: A Helm chart for Obot
     digest: a88e701daa76123ad62d69cb6373787ec3ae5bc664f59d0182a5b79403b258c0
     name: obot
@@ -372,7 +383,7 @@ entries:
     version: v0.11.0-rc1
   - apiVersion: v2
     appVersion: v0.10.0
-    created: "2026-04-30T00:36:27.495865945Z"
+    created: "2026-05-01T20:31:54.240279567Z"
     description: A Helm chart for Obot
     digest: 44e341038c986d282261446751371f6ed4651a930ff38de723f36f2423c50973
     name: obot
@@ -381,7 +392,7 @@ entries:
     version: v0.10.0
   - apiVersion: v2
     appVersion: v0.9.1-rc1
-    created: "2026-04-30T00:36:27.535086911Z"
+    created: "2026-05-01T20:31:54.281007008Z"
     description: A Helm chart for Obot
     digest: 9450b9e2774dc9b3a849d29a2cce72578c1de393a98f1d7a26f939431a83515f
     name: obot
@@ -390,7 +401,7 @@ entries:
     version: v0.9.1-rc1
   - apiVersion: v2
     appVersion: v0.9.0
-    created: "2026-04-30T00:36:27.534551806Z"
+    created: "2026-05-01T20:31:54.280460038Z"
     description: A Helm chart for Obot
     digest: ea21fe4ed2f8ec2bbe441bc40c95fda0d4aff09f101ebf85893f61c6496dd592
     name: obot
@@ -399,7 +410,7 @@ entries:
     version: v0.9.0
   - apiVersion: v2
     appVersion: v0.9.0-rc1
-    created: "2026-04-30T00:36:27.534069949Z"
+    created: "2026-05-01T20:31:54.27998292Z"
     description: A Helm chart for Obot
     digest: 9c85c09ac6651d21d9b3eeddaa54b0f9f4268fbe804ab05a67bf94aff347633e
     name: obot
@@ -408,7 +419,7 @@ entries:
     version: v0.9.0-rc1
   - apiVersion: v2
     appVersion: v0.8.0
-    created: "2026-04-30T00:36:27.533564067Z"
+    created: "2026-05-01T20:31:54.279470284Z"
     description: A Helm chart for Obot
     digest: 84a8bd6822fc6f8220d646e4c101d86da04484e8eea1e01b4537486e2b434424
     name: obot
@@ -417,7 +428,7 @@ entries:
     version: v0.8.0
   - apiVersion: v2
     appVersion: v0.8.0-rc3
-    created: "2026-04-30T00:36:27.53304773Z"
+    created: "2026-05-01T20:31:54.278964912Z"
     description: A Helm chart for Obot
     digest: 30d7b49a9c4c123cb4a6a26cdf1b7ac7e56f6304b27be281f84c023d0eea9f41
     name: obot
@@ -426,7 +437,7 @@ entries:
     version: v0.8.0-rc3
   - apiVersion: v2
     appVersion: v0.8.0-rc2
-    created: "2026-04-30T00:36:27.532551101Z"
+    created: "2026-05-01T20:31:54.278442378Z"
     description: A Helm chart for Obot
     digest: 31f0fdbafd9048f27ca89a876780cb868e4ec7ce307041e4191e56a1bffd4dcb
     name: obot
@@ -435,7 +446,7 @@ entries:
     version: v0.8.0-rc2
   - apiVersion: v2
     appVersion: v0.8.0-rc1
-    created: "2026-04-30T00:36:27.532040022Z"
+    created: "2026-05-01T20:31:54.277934823Z"
     description: A Helm chart for Obot
     digest: 62a3c90f9c26c870bcd7d3deeb61bcb528e86d090e1abdf50adca08091e90f0c
     name: obot
@@ -444,7 +455,7 @@ entries:
     version: v0.8.0-rc1
   - apiVersion: v2
     appVersion: v0.7.1
-    created: "2026-04-30T00:36:27.531484055Z"
+    created: "2026-05-01T20:31:54.276583828Z"
     description: A Helm chart for Obot
     digest: c294eba9d0b2d57008422ff3b23790c0813c379d0e67450d6c954bc4782b610e
     name: obot
@@ -453,11 +464,11 @@ entries:
     version: v0.7.1
   - apiVersion: v2
     appVersion: v0.7.0
-    created: "2026-04-30T00:36:27.531091251Z"
+    created: "2026-05-01T20:31:54.276205032Z"
     description: A Helm chart for Obot
     digest: edda1a5590a5180bd07d5ec4b9e9f38584dbe4f08ae98e0da9382ac671e53426
     name: obot
     urls:
     - https://charts.obot.ai/charts/obot-v0.7.0.tgz
     version: v0.7.0
-generated: "2026-04-30T00:36:27.49512979Z"
+generated: "2026-05-01T20:31:54.238959146Z"
