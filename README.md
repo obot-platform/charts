@@ -66,7 +66,13 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_MCPAUDIT_LOG_PERSIST_INTERVAL_SECONDS | string | `""` | The interval in seconds to persist MCP audit logs to the database. Defaults to 5 seconds. |
 | config.OBOT_SERVER_MCPBASE_IMAGE | string | `""` | Deploy MCP servers in the cluster using this base image. OBOT_SERVER_MCPNAMESPACE is automatically added to the secret if config.OBOT_SERVER_MCPBASE_IMAGE is set. If no tag is specified, the chart's appVersion will be used unless it starts with '0.0.0', in which case the 'main' tag will be used. |
 | config.OBOT_SERVER_MCPCLUSTER_DOMAIN | string | `""` | The cluster domain to use for MCP services. Defaults to cluster.local. Only matters if the above image is set. |
+| config.OBOT_SERVER_MCPDEFAULT_DENY_ALL_EGRESS | string | `""` | Default new MCP servers to allow all egress or deny all egress when a network policy provider is configured. Set to false to default to allow all egress, or true to default to deny all egress. Defaults to false. |
 | config.OBOT_SERVER_MCPHTTPWEBHOOK_BASE_IMAGE | string | `""` | Deploy MCP HTTP webhook servers in the cluster using this base image. |
+| config.OBOT_SERVER_MCPNETWORK_POLICY_PROVIDER_CHART_NAME | string | `""` | Helm chart name for the network policy provider chart. Setting this enables network policy integration. |
+| config.OBOT_SERVER_MCPNETWORK_POLICY_PROVIDER_CHART_PATH | string | `""` | Local filesystem path to the network policy provider chart. Setting this enables network policy integration. |
+| config.OBOT_SERVER_MCPNETWORK_POLICY_PROVIDER_CHART_REPO | string | `""` | Helm repository URL for the network policy provider chart. Used when config.OBOT_SERVER_MCPNETWORK_POLICY_PROVIDER_CHART_NAME is set. |
+| config.OBOT_SERVER_MCPNETWORK_POLICY_PROVIDER_CHART_VERSION | string | `""` | Helm chart version for the network policy provider chart. |
+| config.OBOT_SERVER_MCPNETWORK_POLICY_PROVIDER_VALUES | string | `""` | YAML or JSON values blob merged into the network policy provider chart values. |
 | config.OBOT_SERVER_MCPREMOTE_SHIM_BASE_IMAGE | string | `""` | Deploy MCP remote shim servers in the cluster using this base image. |
 | config.OBOT_SERVER_MCPRUNTIME_BACKEND | string | `"kubernetes"` | The runtime backend to use for MCP servers. Can be 'docker' or 'kubernetes'. Defaults to 'docker'. Setting this to 'kubernetes' will also create the necessary service account, role and rolebinding. |
 | config.OBOT_SERVER_MCPSERVER_SEARCH_IMAGE | string | `""` | The container image to use for the MCP server search functionality. |
