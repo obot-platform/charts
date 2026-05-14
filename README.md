@@ -73,6 +73,7 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_MCPNETWORK_POLICY_PROVIDER_CHART_REPO | string | `""` | Helm repository URL for the network policy provider chart. Used when config.OBOT_SERVER_MCPNETWORK_POLICY_PROVIDER_CHART_NAME is set. |
 | config.OBOT_SERVER_MCPNETWORK_POLICY_PROVIDER_CHART_VERSION | string | `""` | Helm chart version for the network policy provider chart. |
 | config.OBOT_SERVER_MCPNETWORK_POLICY_PROVIDER_VALUES | string | `""` | YAML or JSON values blob merged into the network policy provider chart values. |
+| config.OBOT_SERVER_MCPOAUTH_CLIENT_EXPIRATION | string | `""` | The expiration time for dynamically registered MCP OAuth clients. Must be a valid duration string and may include days, hours, or minutes. Defaults to 30d. |
 | config.OBOT_SERVER_MCPREMOTE_SHIM_BASE_IMAGE | string | `""` | Deploy MCP remote shim servers in the cluster using this base image. |
 | config.OBOT_SERVER_MCPRUNTIME_BACKEND | string | `"kubernetes"` | The runtime backend to use for MCP servers. Can be 'docker' or 'kubernetes'. Defaults to 'docker'. Setting this to 'kubernetes' will also create the necessary service account, role and rolebinding. |
 | config.OBOT_SERVER_MCPSERVER_SEARCH_IMAGE | string | `""` | The container image to use for the MCP server search functionality. |
