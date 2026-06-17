@@ -63,7 +63,7 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_ENCRYPTION_PROVIDER | string | `""` | Configures an encryption provider for credentials in Obot |
 | config.OBOT_SERVER_HOSTNAME | string | `""` | The hostname of your Obot instance, including protocol |
 | config.OBOT_SERVER_IDLE_AGENT_SHUTDOWN_HOURS | string | `""` | The interval in hours to check for idle agents and shut them down. Set to -1 to disable. Defaults to 72. |
-| config.OBOT_SERVER_KEYGEN_LICENSE_KEY | string | `""` | A license key for Obot Enterprise. If set here, it cannot be set in the UI. |
+| config.OBOT_SERVER_LICENSE_KEY | string | `""` | A license key for Obot Enterprise. If set here, it cannot be set in the UI. |
 | config.OBOT_SERVER_MCPAUDIT_LOGS_PERSIST_BATCH_SIZE | string | `""` | The batch size to use when persisting MCP audit logs to the database. Defaults to 1000 |
 | config.OBOT_SERVER_MCPAUDIT_LOG_PERSIST_INTERVAL_SECONDS | string | `""` | The interval in seconds to persist MCP audit logs to the database. Defaults to 5 seconds. |
 | config.OBOT_SERVER_MCPBASE_IMAGE | string | `""` | Deploy MCP servers in the cluster using this base image. OBOT_SERVER_MCPNAMESPACE is automatically added to the secret if config.OBOT_SERVER_MCPBASE_IMAGE is set. If no tag is specified, the chart's appVersion will be used unless it starts with '0.0.0', in which case the 'main' tag will be used. |
