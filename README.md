@@ -52,7 +52,9 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_DAILY_USER_COMPLETION_TOKEN_LIMIT | string | `""` | The maximum number of completion/output tokens allowed per user per day. Set <= 0 to disable this limit. Defaults to 100000. |
 | config.OBOT_SERVER_DAILY_USER_PROMPT_TOKEN_LIMIT | string | `""` | The maximum number of prompt/input tokens allowed per user per day. Set <= 0 to disable this limit. Defaults to 10000000. |
 | config.OBOT_SERVER_DISABLE_UPDATE_CHECK | string | `""` | Disable the Obot server update check. Defaults to false. |
-| config.OBOT_SERVER_DISALLOW_LOCALHOST_MCP | string | `""` | disallow MCP servers that try to connect to localhost. Defaults to false. |
+| config.OBOT_SERVER_DISALLOW_LINK_LOCAL_MCP | string | `""` | Disallow MCP servers that resolve to link-local addresses. Defaults to true. |
+| config.OBOT_SERVER_DISALLOW_LOCALHOST_MCP | string | `""` | Disallow MCP servers that try to connect to localhost. Defaults to true. |
+| config.OBOT_SERVER_DISALLOW_PRIVATE_IP_MCP | string | `""` | Disallow MCP servers that resolve to private IP addresses. Defaults to true. |
 | config.OBOT_SERVER_DSN | string | `""` | The DSN for your database. For example: postgres://<username>:<password>@<hostname>/<db_name> |
 | config.OBOT_SERVER_ENABLE_AUTHENTICATION | bool | `false` | Enables authentication for Obot |
 | config.OBOT_SERVER_ENABLE_REGISTRY_AUTH | bool | `false` | Enables authentication for the MCP registry API. When false (default), registry is accessible without authentication and returns only default catalog items with wildcard access control rules. |
