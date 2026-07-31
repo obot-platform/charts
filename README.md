@@ -133,7 +133,7 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | podDisruptionBudget.enabled | bool | `false` | Enables creation of a PodDisruptionBudget. Disabled by default. |
 | podDisruptionBudget.maxUnavailable | string | `""` | Maximum number of Obot pods that may be unavailable during voluntary disruptions. Set this instead of minAvailable. |
 | podDisruptionBudget.minAvailable | int | `1` | Minimum number of Obot pods that must remain available during voluntary disruptions. Ignored when maxUnavailable is set. |
-| replicaCount | int | `1` | The number of Obot server instances to run |
+| replicaCount | int | `1` | The number of Obot server instances to run. When greater than one, the chart configures replicas to peer tunnel connections through the Obot Service. |
 | resources | object | `{}` | Resource requests and limits to use for Obot |
 | runtimeClassName | string | `""` | RuntimeClass name for Obot server pods. This allows running Obot with specific container runtimes (e.g., gVisor, Kata). |
 | secret.ANTHROPIC_API_KEY | string | `""` | An Anthropic API Key used to configure access to Anthropic models, which can be used as the default in Obot. |
@@ -160,6 +160,8 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | serviceAccount.name | string | `""` |  |
 | tolerations | list | `[]` | Configure tolerations for pod scheduling |
 | topologySpreadConstraints | object | `{}` | Configurable topologySpreadConstraints for Obot pods |
+| tunnelPeer.existingSecret | string | `""` | An existing Secret containing OBOT_SERVER_TUNNEL_PEER_TOKEN. Use this or token for stable GitOps rendering. The chart creates and preserves a token when both are empty. |
+| tunnelPeer.token | string | `""` | The shared peer token stored in the chart-managed Secret. Set this to a stable secret value when manifests are rendered without live-cluster lookup (for example, with a GitOps renderer). |
 | updateStrategy | string | `"RollingUpdate"` | Configures what update strategy to use for the deployment (Recreate or RollingUpdate) |
 
 ## Updating this repo
