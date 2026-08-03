@@ -56,6 +56,7 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_ENABLE_REGISTRY_AUTH | bool | `false` | Enables authentication for the MCP registry API. When false (default), registry is accessible without authentication and returns only default catalog items with wildcard access control rules. |
 | config.OBOT_SERVER_ENCRYPTION_CONFIG_FILE | string | `""` | The path to a file containing the encryption configuration. Only used if config.OBOT_SERVER_ENCRYPTION_PROVIDER is 'custom' |
 | config.OBOT_SERVER_ENCRYPTION_PROVIDER | string | `""` | Configures an encryption provider for credentials in Obot |
+| config.OBOT_SERVER_FORCE_DYNAMIC_CLIENT | bool | `false` | Force Dynamic Client Registration when Obot authenticates to remote MCP servers, even when the authorization server supports Client ID Metadata Documents. Defaults to false. |
 | config.OBOT_SERVER_HIDE_K8S_DETAILS | bool | `false` | Hide Kubernetes configuration details such as the Server Scheduling page from the UI. Defaults to false. |
 | config.OBOT_SERVER_HOSTNAME | string | `""` | The hostname of your Obot instance, including protocol |
 | config.OBOT_SERVER_IDLE_AGENT_SHUTDOWN_HOURS | string | `""` | The interval in hours to check for idle agents and shut them down. Set to -1 to disable. Defaults to 72. |
