@@ -56,6 +56,7 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_ENABLE_REGISTRY_AUTH | bool | `false` | Enables authentication for the MCP registry API. When false (default), registry is accessible without authentication and returns only default catalog items with wildcard access control rules. |
 | config.OBOT_SERVER_ENCRYPTION_CONFIG_FILE | string | `""` | The path to a file containing the encryption configuration. Only used if config.OBOT_SERVER_ENCRYPTION_PROVIDER is 'custom' |
 | config.OBOT_SERVER_ENCRYPTION_PROVIDER | string | `""` | Configures an encryption provider for credentials in Obot |
+| config.OBOT_SERVER_FORCE_DYNAMIC_CLIENT | bool | `false` | Force Dynamic Client Registration when Obot authenticates to remote MCP servers, even when the authorization server supports Client ID Metadata Documents. Defaults to false. |
 | config.OBOT_SERVER_HIDE_K8S_DETAILS | bool | `false` | Hide Kubernetes configuration details such as the Server Scheduling page from the UI. Defaults to false. |
 | config.OBOT_SERVER_HOSTNAME | string | `""` | The hostname of your Obot instance, including protocol |
 | config.OBOT_SERVER_IDLE_AGENT_SHUTDOWN_HOURS | string | `""` | The interval in hours to check for idle agents and shut them down. Set to -1 to disable. Defaults to 72. |
@@ -71,7 +72,6 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_MCPNETWORK_POLICY_PROVIDER_CHART_VERSION | string | `""` | Helm chart version for the network policy provider chart. |
 | config.OBOT_SERVER_MCPNETWORK_POLICY_PROVIDER_VALUES | string | `""` | YAML or JSON values blob merged into the network policy provider chart values. |
 | config.OBOT_SERVER_MCPOAUTH_CLIENT_EXPIRATION | string | `""` | The expiration time for dynamically registered MCP OAuth clients. Must be a valid duration string and may include days, hours, or minutes. Defaults to 30d. |
-| config.OBOT_SERVER_MCPOAUTH_CLIENT_NATIVE_EXCEPTIONS | string | `""` | A comma-separated list of additional Client ID Metadata Document URLs that default to the native application type when application_type is omitted. |
 | config.OBOT_SERVER_MCPRUNTIME_BACKEND | string | `"kubernetes"` | The runtime backend to use for MCP servers. Can be 'docker' or 'kubernetes'. Defaults to 'docker'. Setting this to 'kubernetes' will also create the necessary service account, role and rolebinding. |
 | config.OBOT_SERVER_MCPSECRET_BINDING_ALLOWED_LABEL | string | `""` | Kubernetes Secret label key required for admin UI secret-binding lookup and runtime secret-binding resolution. Empty uses the server default: obot.obot.ai/allow-secret-binding. |
 | config.OBOT_SERVER_MCPSERVER_SEARCH_IMAGE | string | `""` | The container image to use for the MCP server search functionality. |
@@ -134,7 +134,7 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | podDisruptionBudget.enabled | bool | `false` | Enables creation of a PodDisruptionBudget. Disabled by default. |
 | podDisruptionBudget.maxUnavailable | string | `""` | Maximum number of Obot pods that may be unavailable during voluntary disruptions. Set this instead of minAvailable. |
 | podDisruptionBudget.minAvailable | int | `1` | Minimum number of Obot pods that must remain available during voluntary disruptions. Ignored when maxUnavailable is set. |
-| replicaCount | int | `1` | The number of Obot server instances to run |
+| replicaCount | int | `1` | The number of Obot server instances to run. When greater than one, the chart configures replicas to peer tunnel connections through the Obot Service. |
 | resources | object | `{}` | Resource requests and limits to use for Obot |
 | runtimeClassName | string | `""` | RuntimeClass name for Obot server pods. This allows running Obot with specific container runtimes (e.g., gVisor, Kata). |
 | secret.ANTHROPIC_API_KEY | string | `""` | An Anthropic API Key used to configure access to Anthropic models, which can be used as the default in Obot. |
@@ -161,6 +161,8 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | serviceAccount.name | string | `""` |  |
 | tolerations | list | `[]` | Configure tolerations for pod scheduling |
 | topologySpreadConstraints | object | `{}` | Configurable topologySpreadConstraints for Obot pods |
+| tunnelPeer.existingSecret | string | `""` | An existing Secret containing OBOT_SERVER_TUNNEL_PEER_TOKEN. Use this or token for stable GitOps rendering. The chart creates and preserves a token when both are empty. |
+| tunnelPeer.token | string | `""` | The shared peer token stored in the chart-managed Secret. Set this to a stable secret value when manifests are rendered without live-cluster lookup (for example, with a GitOps renderer). |
 | updateStrategy | string | `"RollingUpdate"` | Configures what update strategy to use for the deployment (Recreate or RollingUpdate) |
 
 ## Updating this repo
