@@ -22,9 +22,12 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | affinity | object | `{}` | Configure affinity rules for pod scheduling |
 | config.AWS_REGION | string | `""` | An AWS region, used to access AWS KMS |
 | config.KINM_DB_CONNECTIONS | string | `"5"` | Advanced - the number of connections in the database pool for kinm, both open and idle connections |
+| config.KINM_DB_DISABLE_NOTIFY | string | `"false"` | Advanced - disables kinm's use of PostgreSQL LISTEN/NOTIFY, so replicas learn about each other's writes by polling |
 | config.KINM_DB_MAX_CONNECTIONS | string | `"5"` | Advanced - the number of open connections in the database pool for kinm, overrides KINM_DB_CONNECTIONS |
 | config.KINM_DB_MAX_CONNECTION_LIFETIME_SECONDS | string | `"180"` | Advanced - the maximum lifetime of a connection in the database pool for kinm in seconds |
 | config.KINM_DB_MAX_IDLE_CONNECTIONS | string | `"2"` | Advanced - the number of idle connections in the database pool for kinm, overrides KINM_DB_CONNECTIONS |
+| config.KINM_DB_NOTIFY_DEBOUNCE_MILLISECONDS | string | `"1000"` | Advanced - how often change notifications may wake the watches on one table in kinm, in milliseconds |
+| config.KINM_DB_WATCH_POLL_SECONDS | string | `"120"` | Advanced - how long a kinm watch waits before listing again when nothing has woken it, in seconds, while the change listener is connected |
 | config.NAH_THREADINESS | string | `"10000"` | Advanced - sets the number of concurrent threads that can run in the Obot controller |
 | config.OBOT_ARTIFACT_AZURE_CLIENT_ID | string | `""` | Azure client ID for published workflow storage when using explicit Azure credentials. |
 | config.OBOT_ARTIFACT_AZURE_STORAGE_ACCOUNT | string | `""` | Azure storage account name for published workflow storage. |
