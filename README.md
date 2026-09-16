@@ -39,8 +39,11 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_AUTH_PROVIDER_POSTGRES_CONNECTION_LIFETIME_SECONDS | string | `"180"` | Advanced - the maximum lifetime of a connection in the database pool for the auth provider in seconds |
 | config.OBOT_AUTH_PROVIDER_POSTGRES_MAX_CONNECTIONS | string | `"5"` | Advanced - the maximum number of connections in the database pool for the auth provider |
 | config.OBOT_AUTH_PROVIDER_POSTGRES_MAX_IDLE_CONNECTIONS | string | `"2"` | Advanced - the maximum number of idle connections in the database pool for the auth provider |
+| config.OBOT_DEFAULT_HOSTED_AGENTS_CATALOG_REF | string | `""` | The ref (branch, tag, or commit SHA) for the default hosted agent catalog repository. If empty, the repository's default branch is used. Only used on first-time setup. |
+| config.OBOT_DEFAULT_HOSTED_AGENTS_CATALOG_URL | string | `""` | The default hosted agent catalog repository URL. Must be a full HTTPS URL. Defaults to https://github.com/obot-platform/hosted-agents-catalog. Only used on first-time setup (before the first owner user is created). Set to an empty string to disable. |
 | config.OBOT_ENABLE_AGENTS | string | `""` | Controls Obot Agent features. Leave empty (default) to disable agents for new deployments while grandfathering in (keeping enabled) existing deployments that already have agents. Set to "true" to force-enable, or "false" to force-disable, regardless of grandfathering. |
 | config.OBOT_GCP_KMS_KEY_URI | string | `""` | The URI of a Google Cloud KMS key, used for encryption |
+| config.OBOT_HOSTED_AGENTS_IMAGE_PULL_POLICY | string | `""` | Pull policy for hosted agent sandbox images (Always, IfNotPresent, Never). Empty means Always, which refuses an image preloaded onto the node rather than published to a registry; use IfNotPresent for air-gapped installs. |
 | config.OBOT_SERVER_AUDIT_LOGS_COMPRESS_FILE | bool | `true` | Whether to compress audit log files |
 | config.OBOT_SERVER_AUDIT_LOGS_MODE | string | `"off"` | Configures the storage backend for audit logs in Obot. Can be 'off', 'disk', or 's3' |
 | config.OBOT_SERVER_AUDIT_LOGS_STORE_S3BUCKET | string | `""` | The name of the S3 bucket to store audit logs in. Only used if config.OBOT_SERVER_AUDIT_LOGS_MODE is 's3' |
@@ -56,13 +59,19 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_DISALLOW_LOCALHOST_MCP | string | `""` | Disallow MCP servers that try to connect to localhost. Defaults to true. |
 | config.OBOT_SERVER_DISALLOW_PRIVATE_IPMCP | string | `""` | Disallow MCP servers that resolve to private IP addresses. Defaults to true. |
 | config.OBOT_SERVER_ENABLE_AUTHENTICATION | bool | `false` | Enables authentication for Obot |
+| config.OBOT_SERVER_ENABLE_HOSTED_AGENTS | bool | `false` | Enables Hosted Agents. Must be set to true to expose Hosted Agents APIs and UI. Defaults to false. |
 | config.OBOT_SERVER_ENABLE_REGISTRY_AUTH | bool | `false` | Enables authentication for the MCP registry API. When false (default), registry is accessible without authentication and returns only default catalog items with wildcard access control rules. |
 | config.OBOT_SERVER_ENCRYPTION_CONFIG_FILE | string | `""` | The path to a file containing the encryption configuration. Only used if config.OBOT_SERVER_ENCRYPTION_PROVIDER is 'custom' |
 | config.OBOT_SERVER_ENCRYPTION_PROVIDER | string | `""` | Configures an encryption provider for credentials in Obot |
 | config.OBOT_SERVER_FORCE_DYNAMIC_CLIENT | bool | `false` | Force Dynamic Client Registration when Obot authenticates to remote MCP servers, even when the authorization server supports Client ID Metadata Documents. Defaults to false. |
 | config.OBOT_SERVER_HIDE_K8S_DETAILS | bool | `false` | Hide Kubernetes configuration details such as the Server Scheduling page from the UI. Defaults to false. |
+| config.OBOT_SERVER_HOSTED_AGENTS_CLEANUP_IMAGE | string | `""` | Image used to erase a deleted sandbox's directory from its pool volume. Needs a shell and coreutils. Defaults to busybox:1.36. Set this when the cluster cannot pull from Docker Hub. |
+| config.OBOT_SERVER_HOSTED_AGENTS_RUNTIME_CLASS_NAME | string | `""` | RuntimeClass for hosted agent deployments. |
+| config.OBOT_SERVER_HOSTED_AGENTS_STORAGE_CLASS_NAME | string | `""` |  |
 | config.OBOT_SERVER_HOSTNAME | string | `""` | The hostname of your Obot instance, including protocol |
 | config.OBOT_SERVER_IDLE_AGENT_SHUTDOWN_HOURS | string | `""` | The interval in hours to check for idle agents and shut them down. Set to -1 to disable. Defaults to 72. |
+| config.OBOT_SERVER_LOCAL_AUTH_INITIAL_OWNER_EMAIL | string | `""` | Provisions this email as the initial owner through the built-in local auth provider. Requires secret.OBOT_SERVER_LOCAL_AUTH_INITIAL_OWNER_SETUP_TOKEN. |
+| config.OBOT_SERVER_LOCAL_AUTH_INITIAL_OWNER_SETUP_TOKEN_EXPIRATION_HOURS | string | `"168"` | How long the initial owner setup link remains valid. The link can be reopened until password setup completes. |
 | config.OBOT_SERVER_MCPAUDIT_LOGS_PERSIST_BATCH_SIZE | string | `""` | The batch size to use when persisting MCP audit logs to the database. Defaults to 1000 |
 | config.OBOT_SERVER_MCPAUDIT_LOG_PERSIST_INTERVAL_SECONDS | string | `""` | The interval in seconds to persist MCP audit logs to the database. Defaults to 5 seconds. |
 | config.OBOT_SERVER_MCPBASE_IMAGE | string | `""` | Deploy MCP servers in the cluster using this base image. |
@@ -75,17 +84,24 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_MCPNETWORK_POLICY_PROVIDER_CHART_VERSION | string | `""` | Helm chart version for the network policy provider chart. |
 | config.OBOT_SERVER_MCPNETWORK_POLICY_PROVIDER_VALUES | string | `""` | YAML or JSON values blob merged into the network policy provider chart values. |
 | config.OBOT_SERVER_MCPOAUTH_CLIENT_EXPIRATION | string | `""` | The expiration time for dynamically registered MCP OAuth clients. Must be a valid duration string and may include days, hours, or minutes. Defaults to 30d. |
+| config.OBOT_SERVER_MCPOAUTH_CLIENT_NATIVE_EXCEPTIONS | string | `""` | A comma-separated list of additional Client ID Metadata Document URLs that default to the native application type when application_type is omitted. |
 | config.OBOT_SERVER_MCPRUNTIME_BACKEND | string | `"kubernetes"` | The runtime backend to use for MCP servers. Can be 'docker' or 'kubernetes'. Defaults to 'docker'. Setting this to 'kubernetes' will also create the necessary service account, role and rolebinding. |
 | config.OBOT_SERVER_MCPSECRET_BINDING_ALLOWED_LABEL | string | `""` | Kubernetes Secret label key required for admin UI secret-binding lookup and runtime secret-binding resolution. Empty uses the server default: obot.obot.ai/allow-secret-binding. |
 | config.OBOT_SERVER_MCPSERVER_SEARCH_IMAGE | string | `""` | The container image to use for the MCP server search functionality. |
 | config.OBOT_SERVER_MDM_ASSET_SOURCE | string | `""` | URL to the MDM assets tar archive. |
+| config.OBOT_SERVER_MODEL_PROXY_URL | string | `"https://model-service.obot.ai"` | MCP Tester model proxy used when no model provider is configured. Set to an empty string to disable; omission uses the hosted service. |
 | config.OBOT_SERVER_MULTI_USER_IDLE_SERVER_SHUTDOWN_HOURS | string | `""` | The interval in hours to check for idle multi-user MCP servers and shut them down. Set to -1 to disable. Defaults to 168. |
 | config.OBOT_SERVER_NANOBOT_AGENT_IMAGE | string | `""` | Container image for the Nanobot agent MCP server. |
 | config.OBOT_SERVER_SINGLE_USER_IDLE_SERVER_SHUTDOWN_HOURS | string | `""` | The interval in hours to check for idle single-user MCP servers and shut them down. Set to -1 to disable. Defaults to 24. |
 | config.OBOT_SERVER_UNAUTHENTICATED_RATE_LIMIT | string | `""` | Rate limit for unauthenticated requests in requests per second. Tracked by source IP address. Defaults to 100. |
+| deploymentStrategy | object | `{}` | Configures the complete Kubernetes deployment strategy. When empty, updateStrategy is used. |
 | dev.useEmbeddedDb | bool | `false` | For development/testing use only, enables the use of an postgres database embedded in the obot container. Do not use in production. |
 | extraVolumeMounts | list | `[]` | A list of additional volume mounts to create |
 | extraVolumes | list | `[]` | A list of additional volumes to create |
+| hostedAgentDefaults | object | `{"affinity":{},"nodeSelector":{},"tolerations":[]}` | Default Kubernetes scheduling configuration for hosted agent pods |
+| hostedAgentDefaults.affinity | object | `{}` | Affinity rules applied to hosted agent sandboxes and cleanup jobs |
+| hostedAgentDefaults.nodeSelector | object | `{}` | Node labels required by hosted agent sandboxes and cleanup jobs |
+| hostedAgentDefaults.tolerations | list | `[]` | Tolerations applied to hosted agent sandboxes and cleanup jobs |
 | image.pullPolicy | string | `"IfNotPresent"` | Kubernetes image pullPolicy to use for Obot |
 | image.repository | string | `"ghcr.io/obot-platform/obot"` | The name of the docker repository for Obot. `ghcr.io/obot-platform/obot` for open-source or `ghcr.io/obot-platform/obot-enterprise` for enterprise. Please note that for enterprise you will need to set an `imagePullSecret` |
 | image.tag | string | `""` | The docker tag to pull for obot. If blank, will default to the chart appVersion |
@@ -104,7 +120,7 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | mcpNamespace.networkPolicy | object | `{"dnsNamespace":"kube-system","enabled":true}` | Network policy configuration for the MCP namespace |
 | mcpNamespace.networkPolicy.dnsNamespace | string | `"kube-system"` | The namespace where DNS pods are running. Default is kube-system. Adjust if your cluster uses a different namespace for DNS services. |
 | mcpNamespace.networkPolicy.enabled | bool | `true` | Enable network policy to restrict traffic to/from MCP servers. Default is true, and is recommended for production deployments. |
-| mcpNamespace.podSecurity | object | `{"audit":"restricted","auditVersion":"latest","enabled":true,"enforce":"restricted","enforceVersion":"latest","warn":"restricted","warnVersion":"latest"}` | Pod Security Admission configuration for the MCP namespace |
+| mcpNamespace.podSecurity | object | `{"audit":"restricted","auditVersion":"latest","enabled":true,"enforce":"restricted","enforceVersion":"latest","warn":"restricted","warnVersion":"latest"}` | Pod Security Admission configuration for the MCP namespace. Hosted agent sandboxes share this namespace, so the enforce level below is also applied to the security context of every sandbox pod. A restricted sandbox runs as UID 1000 and cannot escalate privileges, so a harness image that must run as root needs this lowered to baseline or privileged. |
 | mcpNamespace.podSecurity.audit | string | `"restricted"` | Pod Security Standards level to audit (privileged, baseline, or restricted). Default is restricted. |
 | mcpNamespace.podSecurity.auditVersion | string | `"latest"` | Kubernetes version for the audit policy. Default is latest. |
 | mcpNamespace.podSecurity.enabled | bool | `true` | Enable Pod Security Admission labels on the MCP namespace. Default is true. |
@@ -152,6 +168,7 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | secret.OBOT_SERVER_DSN | string | `""` | The DSN for your database. For example: postgres://<username>:<password>@<hostname>/<db_name> |
 | secret.OBOT_SERVER_ENCRYPTION_KEY | string | `""` | The key to use for encryption. Only used if config.OBOT_SERVER_ENCRYPTION_PROVIDER is 'custom'. A key can be generated with `openssl rand -base64 32` |
 | secret.OBOT_SERVER_LICENSE_KEY | string | `""` | A license key for Obot Enterprise. If set here, it cannot be set in the UI. |
+| secret.OBOT_SERVER_LOCAL_AUTH_INITIAL_OWNER_SETUP_TOKEN | string | `""` | Randomly generated, high-entropy secret used by the initial owner's setup link (for example, `openssl rand -hex 32`). Set with config.OBOT_SERVER_LOCAL_AUTH_INITIAL_OWNER_EMAIL. It is never stored in plaintext by Obot. |
 | secret.OBOT_SERVER_OTEL_BEARER_TOKEN | string | `""` | The bearer token for authentication with OpenTelemetry |
 | secret.OPENAI_API_KEY | string | `""` | An OpenAI API Key used to configure access to OpenAI models, which are the default in Obot. |
 | secret.existingSecret | string | `""` | The name of an existing Secret to use instead of creating one. It only needs to contain the sensitive keys configured below; non-sensitive chart-derived configuration is still supplied by the chart ConfigMap. |
