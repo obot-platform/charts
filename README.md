@@ -47,8 +47,8 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_AUTHENTICATED_RATE_LIMIT | string | `""` | Rate limit for authenticated non-admin requests in requests per second. Tracked by user ID. Admin users are exempt. Defaults to 200. |
 | config.OBOT_SERVER_AUTH_ADMIN_EMAILS | string | `""` | A comma separated list of email addresses that will have the Admin role in Obot. |
 | config.OBOT_SERVER_AUTH_OWNER_EMAILS | string | `""` | A comma separated list of email addresses that will have the Owner role in Obot. |
-| config.OBOT_SERVER_DAILY_USER_INPUT_TOKEN_LIMIT | string | `""` | The maximum number of prompt/input tokens allowed per user per day. Set to a negative value to disable this limit. Defaults to 10000000. |
-| config.OBOT_SERVER_DAILY_USER_OUTPUT_TOKEN_LIMIT | string | `""` | The maximum number of completion/output tokens allowed per user per day. Set to a negative value to disable this limit. Defaults to 100000. |
+| config.OBOT_SERVER_DAILY_USER_INPUT_TOKEN_LIMIT | string | `""` | Daily input token limit per user in the LLM gateway's "Daily token limit" budget, which the gateway puts on every profile when it first starts. Only used then; after that, edit each profile's budget under LLM Gateway > Profiles. Set to a negative value to leave out this limit. Defaults to 10000000. |
+| config.OBOT_SERVER_DAILY_USER_OUTPUT_TOKEN_LIMIT | string | `""` | Daily output token limit per user in the LLM gateway's "Daily token limit" budget, which the gateway puts on every profile when it first starts. Only used then. Set to a negative value to leave out this limit. Defaults to 100000. |
 | config.OBOT_SERVER_DISABLE_UPDATE_CHECK | string | `""` | Disable the Obot server update check. Defaults to false. |
 | config.OBOT_SERVER_DISALLOW_LINK_LOCAL_MCP | string | `""` | Disallow MCP servers that resolve to link-local addresses. Defaults to true. |
 | config.OBOT_SERVER_DISALLOW_LOCALHOST_MCP | string | `""` | Disallow MCP servers that try to connect to localhost. Defaults to true. |
@@ -130,7 +130,7 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | mcpServerDefaults.tolerations | list | `[]` | Tolerations for MCP server pods (YAML list format) When set via Helm, these settings cannot be updated through the API |
 | nodeSelector | object | `{}` | Configure node selector for pod assignment |
 | persistence.accessModes | list | `["ReadWriteOnce"]` | Persistent Volume access modes. ReadWriteOnce is appropriate for replicaCount=1. |
-| persistence.enabled | bool | `true` | Enables persistence using a PVC mounted at /data. |
+| persistence.enabled | bool | `true` | Enables persistence using a PVC mounted at /data. With dev.useEmbeddedDb, the built-in Postgres lives on this volume, including the LLM gateway's database and its encryption key. With an external secret.OBOT_SERVER_DSN, the gateway keeps its state in Postgres, so it doesn't depend on this volume. |
 | persistence.existingClaim | string | `""` |  |
 | persistence.path | string | `"/data"` | The path the volume will be mounted |
 | persistence.size | string | `"8Gi"` | Persistent Volume size |
@@ -144,7 +144,7 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | replicaCount | int | `1` | The number of Obot server instances to run. When greater than one, the chart configures replicas to peer tunnel connections through the Obot Service. |
 | resources | object | `{}` | Resource requests and limits to use for Obot |
 | runtimeClassName | string | `""` | RuntimeClass name for Obot server pods. This allows running Obot with specific container runtimes (e.g., gVisor, Kata). |
-| secret.ANTHROPIC_API_KEY | string | `""` | An Anthropic API Key used to configure access to Anthropic models, which can be used as the default in Obot. |
+| secret.ANTHROPIC_API_KEY | string | `""` | An Anthropic API key. At startup, Obot configures the LLM gateway's anthropic provider with it, and updates the provider's key when the value changes. |
 | secret.AWS_ACCESS_KEY_ID | string | `""` | An AWS access key with permissions for AWS KMS, used for encryption |
 | secret.AWS_SECRET_ACCESS_KEY | string | `""` | An AWS secret access key with permissions for AWS KMS, used for encryption |
 | secret.GITHUB_AUTH_TOKEN | string | `""` | A GitHub PAT, used to authenticate catalog and tool pulls to avoid GitHub rate limiting |
@@ -154,7 +154,7 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | secret.OBOT_SERVER_LICENSE_KEY | string | `""` | A license key for Obot Enterprise. If set here, it cannot be set in the UI. |
 | secret.OBOT_SERVER_LOCAL_AUTH_INITIAL_OWNER_SETUP_TOKEN | string | `""` | Randomly generated, high-entropy secret used by the initial owner's setup link (for example, `openssl rand -hex 32`). Set with config.OBOT_SERVER_LOCAL_AUTH_INITIAL_OWNER_EMAIL. It is never stored in plaintext by Obot. |
 | secret.OBOT_SERVER_OTEL_BEARER_TOKEN | string | `""` | The bearer token for authentication with OpenTelemetry |
-| secret.OPENAI_API_KEY | string | `""` | An OpenAI API Key used to configure access to OpenAI models, which are the default in Obot. |
+| secret.OPENAI_API_KEY | string | `""` | An OpenAI API key. At startup, Obot configures the LLM gateway's openai provider with it, and updates the provider's key when the value changes. You can also add providers under LLM Gateway > Providers. |
 | secret.existingSecret | string | `""` | The name of an existing Secret to use instead of creating one. It only needs to contain the sensitive keys configured below; non-sensitive chart-derived configuration is still supplied by the chart ConfigMap. |
 | service.annotations | object | `{}` | Extra annotations to add to service object |
 | service.port | int | `80` | Port for the Kubernetes service to expose |
