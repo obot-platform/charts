@@ -45,8 +45,6 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_AUDIT_LOGS_STORE_S3ENDPOINT | string | `""` | If config.OBOT_SERVER_AUDIT_LOGS_MODE is 's3' and you are not using AWS S3, this needs to be set to the S3 api endpoint of your provider. |
 | config.OBOT_SERVER_AUDIT_LOGS_USE_PATH_STYLE | bool | `false` | Whether to use path style for S3 |
 | config.OBOT_SERVER_AUTHENTICATED_RATE_LIMIT | string | `""` | Rate limit for authenticated non-admin requests in requests per second. Tracked by user ID. Admin users are exempt. Defaults to 200. |
-| config.OBOT_SERVER_AUTH_ADMIN_EMAILS | string | `""` | A comma separated list of email addresses that will have the Admin role in Obot. |
-| config.OBOT_SERVER_AUTH_OWNER_EMAILS | string | `""` | A comma separated list of email addresses that will have the Owner role in Obot. |
 | config.OBOT_SERVER_DAILY_USER_INPUT_TOKEN_LIMIT | string | `""` | Daily input token limit per user in the LLM gateway's "Daily token limit" budget, which the gateway puts on every profile when it first starts. Only used then; after that, edit each profile's budget under LLM Gateway > Profiles. Set to a negative value to leave out this limit. Defaults to 10000000. |
 | config.OBOT_SERVER_DAILY_USER_OUTPUT_TOKEN_LIMIT | string | `""` | Daily output token limit per user in the LLM gateway's "Daily token limit" budget, which the gateway puts on every profile when it first starts. Only used then. Set to a negative value to leave out this limit. Defaults to 100000. |
 | config.OBOT_SERVER_DISABLE_UPDATE_CHECK | string | `""` | Disable the Obot server update check. Defaults to false. |
@@ -55,7 +53,6 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_DISALLOW_PRIVATE_IPMCP | string | `""` | Disallow MCP servers that resolve to private IP addresses. Defaults to true. |
 | config.OBOT_SERVER_EGRESS_AUDIT_LOG_RETENTION_DAYS | int | `90` |  |
 | config.OBOT_SERVER_ENABLE_AUTHENTICATION | bool | `false` | Enables authentication for Obot |
-| config.OBOT_SERVER_ENABLE_REGISTRY_AUTH | bool | `false` | Enables authentication for the MCP registry API. When false (default), registry is accessible without authentication and returns only default catalog items with wildcard access control rules. |
 | config.OBOT_SERVER_ENCRYPTION_CONFIG_FILE | string | `""` | The path to a file containing the encryption configuration. Only used if config.OBOT_SERVER_ENCRYPTION_PROVIDER is 'custom' |
 | config.OBOT_SERVER_ENCRYPTION_PROVIDER | string | `""` | Configures an encryption provider for credentials in Obot |
 | config.OBOT_SERVER_FORCE_DYNAMIC_CLIENT | bool | `false` | Force Dynamic Client Registration when Obot authenticates to remote MCP servers, even when the authorization server supports Client ID Metadata Documents. Defaults to false. |
