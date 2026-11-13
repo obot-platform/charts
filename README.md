@@ -75,7 +75,6 @@ If you want to use the enterprise version of Obot instead, set `image.repository
 | config.OBOT_SERVER_MCPOAUTH_CLIENT_NATIVE_EXCEPTIONS | string | `""` | A comma-separated list of additional Client ID Metadata Document URLs that default to the native application type when application_type is omitted. |
 | config.OBOT_SERVER_MCPRUNTIME_BACKEND | string | `"kubernetes"` | The runtime backend to use for MCP servers. Can be 'docker' or 'kubernetes'. Defaults to 'docker'. Setting this to 'kubernetes' will also create the necessary service account, role and rolebinding. |
 | config.OBOT_SERVER_MCPSECRET_BINDING_ALLOWED_LABEL | string | `""` | Kubernetes Secret label key required for admin UI secret-binding lookup and runtime secret-binding resolution. Empty uses the server default: obot.obot.ai/allow-secret-binding. |
-| config.OBOT_SERVER_MCPSERVER_SEARCH_IMAGE | string | `""` | The container image to use for the MCP server search functionality. |
 | config.OBOT_SERVER_MDM_ASSET_SOURCE | string | `""` | URL to the MDM assets tar archive. |
 | config.OBOT_SERVER_MODEL_PROXY_URL | string | `"https://model-service.obot.ai"` | MCP Tester model proxy used when no model provider is configured. Set to an empty string to disable; omission uses the hosted service. |
 | config.OBOT_SERVER_MULTI_USER_IDLE_SERVER_SHUTDOWN_HOURS | string | `""` | The interval in hours to check for idle multi-user MCP servers and shut them down. Set to -1 to disable. Defaults to 168. |
